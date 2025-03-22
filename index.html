@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Senna van Santen - Game Developer Portfolio</title>
     <style>
-        /************************************************************
-         * Base styles
-         ************************************************************/
+        
         * {
             margin: 0;
             padding: 0;
@@ -22,9 +20,7 @@
             height: 100vh;
         }
 
-        /************************************************************
-         * Top Bar
-         ************************************************************/
+        
         .top-bar {
             background: #1e1e1e;
             padding: 10px;
@@ -40,9 +36,7 @@
             cursor: pointer;
         }
 
-        /************************************************************
-         * Panel Container
-         ************************************************************/
+        
         .panel-container {
             display: flex;
             flex-grow: 1;
@@ -77,9 +71,7 @@
             min-width: 250px;
         }
 
-        /************************************************************
-         * Draggable Bars
-         ************************************************************/
+        
         .draggable {
             cursor: move;
             position: absolute;
@@ -94,9 +86,9 @@
             z-index: 10;
         }
         .blueprint-button {
-            width: 120px; /* Adjust size as needed */
-            height: 160px; /* Adjust size as needed */
-            background: linear-gradient(to bottom, #222222, #111111); /* Dark base */
+            width: 120px; 
+            height: 160px; 
+            background: linear-gradient(to bottom, #222222, #111111);
             border-radius: 6px;
             border: 1px solid #222;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
@@ -107,7 +99,7 @@
             transition: transform 0.2s ease-in-out, background 0.3s;
         }
 
-        /* Checkered background */
+       
         .blueprint-button::before {
             content: "";
             position: absolute;
@@ -115,15 +107,15 @@
             left: 0;
             width: 100%;
             height: 75%;
-            background: url('https://upload.wikimedia.org/wikipedia/commons/5/5d/Checkerboard_pattern.svg'); /* Placeholder */
+            background: url('https://upload.wikimedia.org/wikipedia/commons/5/5d/Checkerboard_pattern.svg'); 
             background-size: cover;
             opacity: 0.2;
         }
         
 
-        /* Small icon in the top-right corner */
+        
         .blueprint-button::after {
-            content: "👤"; /* Placeholder for an actual icon */
+            content: "👤";
             position: absolute;
             top: 5px;
             right: 5px;
@@ -131,22 +123,22 @@
             color: #ccc;
         }
 
-        /* Blue underline (always visible) */
+        
         .blueprint-underline {
             position: absolute;
             bottom: 30px;
             left: 0;
             width: 100%;
             height: 2px;
-            background: #007BFF; /* Unreal-style blue */
+            background: #007BFF; 
         }
 
-        /* Default (unselected) style */
+        
         .blueprint-label {
             position: absolute;
             bottom: 0;
             width: 100%;
-            background: #444; /* Dark gray */
+            background: #444;
             color: white;
             font-size: 12px;
             font-weight: bold;
@@ -154,9 +146,9 @@
             transition: background 0.3s;
         }
 
-        /* Selected state */
+      
         .blueprint-button.selected .blueprint-label {
-            background: #007BFF !important; /* Bright blue */
+            background: #007BFF !important; 
         }
         .hub {
             background: #353535;
@@ -168,9 +160,7 @@
             border-radius: 5px;
         }
 
-        /************************************************************
-         * Tabs (Explorer / Content Explorer) & (Inspector / Graph)
-         ************************************************************/
+        
         .tab-container {
             display: flex;
             background: transparent;
@@ -205,13 +195,27 @@
             overflow: hidden;
             padding: 10px;
         }
-        .hidden {
-            display: none;
+        
+
+        #explorer-content 
+        {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        grid-auto-rows: min-content;
+        width: 100%;
+        height: 100%;
+        overflow: hidden; 
         }
 
-        /************************************************************
-         * Resize Handle
-         ************************************************************/
+        .hidden 
+        {
+        display: none !important;
+        }
+
+
+
+
+        
         .resize-handle {
             width: 18px;
             height: 18px;
@@ -234,33 +238,60 @@
             opacity: 1;
         }
 
-        /************************************************************
-         * Project Explorer (Left Panel) Items
-         ************************************************************/
-        .project-item {
+
+                
+        .project-button {
+            width: 130px; 
+            height: 170px; 
+            background: linear-gradient(to bottom, #222222, #111111);
+            border-radius: 6px;
+            border: 1px solid #222;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
             cursor: pointer;
-            padding: 5px;
-            background: #3c3c3c;
-            margin: 5px 0;
-            border: 2px solid transparent;
-            transition: border 0.2s ease-in-out, background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-            border-radius: 4px;
-        }
-        .project-item:hover {
-            background: #444;
-        }
-        .project-item.selected {
-            border: 2px solid #ff8800;
-            box-shadow: 0 0 8px #ff8800;
-            background: #333;
+            transition: transform 0.2s ease-in-out, background 0.3s;
+            margin: 5px;
         }
 
-        /************************************************************
-         * "Mechanics" or "Scripts" area
-         ************************************************************/
+        
+        .project-button .project-thumbnail {
+            width: 100%;
+            height: 100px; 
+            object-fit: cover;
+        }
+
+        .project-button .blueprint-underline {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: #007BFF;
+        }
+
+        .project-button .blueprint-label {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: #444;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 5px 0;
+            transition: background 0.3s;
+        }
+
+        
+        .project-button.selected .blueprint-label {
+            background: #007BFF !important;
+        }
+
+
+        
         .footer {
             background: #252526;
-            /* padding: 8px; */
             padding-left: 20px;
             padding-top: 8px;
             padding-bottom: 8px;
@@ -298,21 +329,16 @@
             border-radius: 4px;
         }
 
-        /* The “#” icon in the tile */
         .script-icon {
             display: block;
             width: 40px; 
             height: 40px;
             margin: 0 auto 5px auto;
-            background-color: #4d4d4d;
+            background-color: #ccc;
             border: 1px solid #222;
             border-radius: 4px;
-            /* 
-               You can replace this with a real image or inline SVG. 
-               For demonstration, let's just use an ASCII #. 
-            */
             font-size: 30px;
-            color: #ccc;
+            color: #086a19;
             line-height: 40px;
             text-align: center;
             font-weight: bold;
@@ -344,10 +370,28 @@
                 </div>
             </div>
             <div id="explorer-content">
-                <div class="project-item" onclick="loadProject('Unity A')">Project A</div>
-                <div class="project-item" onclick="loadProject('Unreal B')">Project B</div>
-                <div class="project-item" onclick="loadProject('Project C')">Project C</div>
+                <div class="project-button" onclick="loadProject('Unity A')">
+                    <img class="project-thumbnail" src="thumbnail_unity_a.png" alt="Unity A ">
+                    <div class="blueprint-underline"></div>
+                    <div class="blueprint-label">Unity A</div>
+                </div>
+                <div class="project-button" onclick="loadProject('Unreal B')">
+                    <img class="project-thumbnail" src="thumbnail_unreal_b.png" alt="Unreal B ">
+                    <div class="blueprint-underline"></div>
+                    <div class="blueprint-label">Unreal B</div>
+                </div>
+                <div class="project-button" onclick="loadProject('Project C')">
+                    <img class="project-thumbnail" src="thumbnail_project_c.png" alt="Project C ">
+                    <div class="blueprint-underline"></div>
+                    <div class="blueprint-label">Project C</div>
+                </div>
+                <div class="project-button" onclick="loadProject('Project D')">
+                    <img class="project-thumbnail" src="thumbnail_project_d.png" alt="Project D Thumbnail">
+                    <div class="blueprint-underline"></div>
+                    <div class="blueprint-label">Project D</div>
+                </div>
             </div>
+            
             <div id="content-explorer-content" class="hidden">
                 <!-- Example blueprint button (unchanged) -->
                 <div onclick="loadPlayerPrefab()">
@@ -392,151 +436,98 @@
         <div class="scripts-container" id="mechanicsList"></div>
     </div>
 
-    <script>
-        /***********************************************************
-         * 1) Define initial panel positions/sizes for reset
-         ***********************************************************/
-        const initialPositions = {
-            leftPanel: { left: "0px", top: "-3px" },
-            mainPanel: { left: "27%", top: "-3px" },
-            rightPanel: { left: "74.3%", top: "-3px" }
-        };
-        const initialSizes = {
-            leftPanel: { width: "25%", height: "88vh" },
-            mainPanel: { width: "46%", height: "88vh" },
-            rightPanel: { width: "25%", height: "88vh" }
-        };
-
-        /***********************************************************
-         * 2) Projects & Mechanics Data
-         ***********************************************************/
-        const projects = {
-            "Unity A": {
-                scene: "Scene for Project A",
-                code: `Code for Project A\n\nfunction main() {\n  console.log("ProjectA Code is Running...");\n}`,
-                mechanics: [
-                    {
-                        name: "ASyncJump",
-                        info: "Async-based jumping logic for the player.",
-                        screenshot: "AsyncJumpExample.png",
-                        code: `// ASyncJump script\nusing UnityEngine;\npublic class ASyncJump : MonoBehaviour {\n  void Jump() {\n    // Jump logic\n  }\n}`
-                    },
-                    {
-                        name: "BouncingBall",
-                        info: "Demonstration of a bouncing ball physics script.",
-                        screenshot: "BouncingBallExample.png",
-                        code: `// BouncingBall script\nusing UnityEngine;\npublic class BouncingBall : MonoBehaviour {\n  // Implementation...\n}`
-                    },
-                    {
-                        name: "DragPoint",
-                        info: "Allows the player to drag objects around.",
-                        screenshot: "DragPointExample.png",
-                        code: `// DragPoint script\nusing UnityEngine;\npublic class DragPoint : MonoBehaviour {\n  // Implementation...\n}`
-                    },
-                    {
-                        name: "Linear",
-                        info: "Simple linear movement demonstration.",
-                        screenshot: "LinearExample.png",
-                        code: `// Linear script\n// ...`
-                    },
-                    {
-                        name: "LinearFriction",
-                        info: "Movement with friction applied linearly.",
-                        screenshot: "LinearFrictionExample.png",
-                        code: `// LinearFriction script\n// ...`
-                    },
-                    {
-                        name: "QuadraticFriction",
-                        info: "Movement with friction that scales quadratically.",
-                        screenshot: "QuadraticFrictionExample.png",
-                        code: `// QuadraticFriction script\n// ...`
-                    },
-                    {
-                        name: "triangle mesh",
-                        info: "Generating or manipulating a triangle mesh in code.",
-                        screenshot: "TriangleMeshExample.png",
-                        code: `// triangle mesh script\n// ...`
-                    },
-                    {
-                        name: "TwoLines",
-                        info: "Sample script that draws two lines in the scene.",
-                        screenshot: "TwoLinesExample.png",
-                        code: `// TwoLines script\n// ...`
-                    },
-                    {
-                        name: "TwoPoints",
-                        info: "Calculates something between two points.",
-                        screenshot: "TwoPointsExample.png",
-                        code: `// TwoPoints script\n// ...`
-                    }
-                ]
-            },
-            "Unreal B": {
-                scene: "Scene for Project B",
-                code: `Code for Project B\n\nfunction main() {\n  console.log("ProjectB Code is Running...");\n}`,
-                mechanics: [
-                    {
-                        name: "Blueprint_Attack",
-                        info: "Blueprint-based attacking logic in Unreal.",
-                        screenshot: "BlueprintAttack.png",
-                        code: `# Unreal Blueprint pseudo-code\nEvent Graph:\n  OnAttack -> DoDamage -> PlayAnimation\n`
-                    }
-                ]
-            },
-            "Project C": {
-                scene: "Scene for Project C",
-                code: `Code for Project C\n\nfunction main() {\n  console.log("ProjectC Code is Running...");\n}`,
-                mechanics: [
-                    {
-                        name: "Movement",
-                        info: "Player movement script with jump, run, etc.",
-                        screenshot: "MovementExample.png",
-                        code: `// Movement script\nusing UnityEngine;\npublic class PlayerMovement : MonoBehaviour {\n  void Update() {\n    // Movement logic\n  }\n}`
-                    }
-                ]
-            }
-        };
-
-        let currentProject = "No Project Selected";
-        let currentMechanic = null;
-
-        /***********************************************************
-         * 3) Toggle bottom "Mechanics" panel
-         ***********************************************************/
-        function toggleMechanics() {
-            const mechanicsContent = document.getElementById('mechanicsContent');
-
-            mechanicsContent.style.display = 
-                (mechanicsContent.style.display === 'block') ? 'none' : 'block';
-                
-        }
-
-        /***********************************************************
-         * 4) Switch Explorer Tabs (left panel)
-         ***********************************************************/
-        function switchExplorerTab(tab) {
-            
-            document.getElementById('explorerTab').classList.remove('active');
-            document.getElementById('contentExplorerTab').classList.remove('active');
-            document.getElementById('explorer-content').classList.add('hidden');
-            document.getElementById('content-explorer-content').classList.add('hidden');
-            document.getElementById('mechanicsContent').style.display = 'none';
-
-            if (tab === 'explorer') {
-                document.getElementById('explorerTab').classList.add('active');
-                document.getElementById('explorer-content').classList.remove('hidden');
-            } else {
-                document.querySelectorAll('.project-item').forEach(item => item.classList.remove('selected'));
-                document.getElementById('contentExplorerTab').classList.add('active');
-                document.getElementById('content-explorer-content').classList.remove('hidden');
-            }
-        }
-        function loadPlayerPrefab() 
+    <script type="importmap">
         {
-            switchTab('inspector')
-            switchExplorerTab('contentExplorer')
-            document.getElementById('scene-view').innerHTML = `<img src="your-image.jpg" alt="Player Image" style="width: 100%;">`;
-            document.getElementById('inspector-view').innerHTML = 
+          "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.174.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.174.0/examples/jsm/"
+
+          }
+        }
+      </script>
+      
+<script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
+  
+    
+    function loadPlayerPrefab() {
+        
+        switchTab('inspector');
+        switchExplorerTab('contentExplorer');
+  
+        const sceneView = document.getElementById('scene-view');
+        sceneView.innerHTML = ""; 
+  
+       
+        const canvas = document.createElement('canvas');
+        canvas.id = 'playerCanvas';
+        canvas.style.width = '100%';
+        canvas.style.height = '10%';
+        sceneView.appendChild(canvas);
+        
+  
+        
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
+        renderer.setSize(sceneView.clientWidth, sceneView.clientHeight);
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x3c3c3c); 
+  
+        const camera = new THREE.PerspectiveCamera(70, sceneView.clientWidth / sceneView.clientHeight, 0.6, 2000);
+        camera.position.set(0, 200, 500);
+        
+        
+        const ambientLight = new THREE.AmbientLight(0xffffff, 1);
+        scene.add(ambientLight);
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+        directionalLight.position.set(1000, 1000, 5000);
+        scene.add(directionalLight);
+  
+        
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.target.set(0, 100, 0);
+        controls.update();
+        
+        let loadedObject = null;
+        
+        const loader = new FBXLoader();
+        const textureLoader = new THREE.TextureLoader();
+        const fbxTexture = textureLoader.load('FbxRender.png');
+
+        loader.load('ME7.fbx', function (object) {
+            
+            object.scale.set(1, 1, 1);
+            
+           
+            object.traverse(child => {
+                if (child.isMesh) {
+                    child.material.map = fbxTexture;
+                    child.material.needsUpdate = true;
+                }
+            });
+    
+    scene.add(object);
+    loadedObject = object;
+}, undefined, function (error) {
+    console.error('Error loading FBX:', error);
+});
+
+  
+        
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            renderer.render(scene, camera);
+            if (loadedObject) {
+       
+        loadedObject.rotation.y += 0.01;
+    }
+        }
+        animate();
+  
+       
+        document.getElementById('inspector-view').innerHTML = 
             `
                 <div style="
                 font-family: Arial, sans-serif; 
@@ -869,7 +860,161 @@
 
             `;
 
+        
+    }
+    window.loadPlayerPrefab = loadPlayerPrefab;
+  
+    
+  </script>
+  
+      
 
+      
+    <script>
+        
+
+        
+        const initialPositions = {
+            leftPanel: { left: "0px", top: "-3px" },
+            mainPanel: { left: "27%", top: "-3px" },
+            rightPanel: { left: "74.3%", top: "-3px" }
+        };
+        const initialSizes = {
+            leftPanel: { width: "25%", height: "88vh" },
+            mainPanel: { width: "46%", height: "88vh" },
+            rightPanel: { width: "25%", height: "88vh" }
+        };
+
+        
+        const projects = {
+            "Unity A": {
+                scene: "Scene for Project A",
+                code: `Code for Project A\n\nfunction main() {\n  console.log("ProjectA Code is Running...");\n}`,
+                mechanics: [
+                    {
+                        name: "ASyncJump",
+                        info: "Async-based jumping logic for the player.",
+                        screenshot: "AsyncJumpExample.png",
+                        code: `// ASyncJump script\nusing UnityEngine;\npublic class ASyncJump : MonoBehaviour {\n  void Jump() {\n    // Jump logic\n  }\n}`
+                    },
+                    {
+                        name: "BouncingBall",
+                        info: "Demonstration of a bouncing ball physics script.",
+                        screenshot: "BouncingBallExample.png",
+                        code: `// BouncingBall script\nusing UnityEngine;\npublic class BouncingBall : MonoBehaviour {\n  // Implementation...\n}`
+                    },
+                    {
+                        name: "DragPoint",
+                        info: "Allows the player to drag objects around.",
+                        screenshot: "DragPointExample.png",
+                        code: `// DragPoint script\nusing UnityEngine;\npublic class DragPoint : MonoBehaviour {\n  // Implementation...\n}`
+                    },
+                    {
+                        name: "Linear",
+                        info: "Simple linear movement demonstration.",
+                        screenshot: "LinearExample.png",
+                        code: `// Linear script\n// ...`
+                    },
+                    {
+                        name: "LinearFriction",
+                        info: "Movement with friction applied linearly.",
+                        screenshot: "LinearFrictionExample.png",
+                        code: `// LinearFriction script\n// ...`
+                    },
+                    {
+                        name: "QuadraticFriction",
+                        info: "Movement with friction that scales quadratically.",
+                        screenshot: "QuadraticFrictionExample.png",
+                        code: `// QuadraticFriction script\n// ...`
+                    },
+                    {
+                        name: "triangle mesh",
+                        info: "Generating or manipulating a triangle mesh in code.",
+                        screenshot: "TriangleMeshExample.png",
+                        code: `// triangle mesh script\n// ...`
+                    },
+                    {
+                        name: "TwoLines",
+                        info: "Sample script that draws two lines in the scene.",
+                        screenshot: "TwoLinesExample.png",
+                        code: `// TwoLines script\n// ...`
+                    },
+                    {
+                        name: "TwoPoints",
+                        info: "Calculates something between two points.",
+                        screenshot: "TwoPointsExample.png",
+                        code: `// TwoPoints script\n// ...`
+                    }
+                ]
+            },
+            "Unreal B": {
+                scene: "Scene for Project B",
+                code: `Code for Project B\n\nfunction main() {\n  console.log("ProjectB Code is Running...");\n}`,
+                mechanics: [
+                    {
+                        name: "Blueprint_Attack",
+                        info: "Blueprint-based attacking logic in Unreal.",
+                        screenshot: "BlueprintAttack.png",
+                        code: `# Unreal Blueprint pseudo-code\nEvent Graph:\n  OnAttack -> DoDamage -> PlayAnimation\n`
+                    }
+                ]
+            },
+            "Project C": {
+                scene: "Scene for Project C",
+                code: `Code for Project C\n\nfunction main() {\n  console.log("ProjectC Code is Running...");\n}`,
+                mechanics: [
+                    {
+                        name: "Movement",
+                        info: "Player movement script with jump, run, etc.",
+                        screenshot: "MovementExample.png",
+                        code: `// Movement script\nusing UnityEngine;\npublic class PlayerMovement : MonoBehaviour {\n  void Update() {\n    // Movement logic\n  }\n}`
+                    }
+                ]
+            },
+            "Project D": {
+                scene: "Scene for Project D",
+                code: `Code for Project D\n\nfunction main() {\n  console.log("ProjectD Code is Running...");\n}`,
+                mechanics: [
+                    {
+                        name: "Heavy Hit",
+                        info: "Player movement script with jump, run, etc.",
+                        screenshot: "MovementExample.png",
+                        code: `// Heavy hit script\nusing UnityEngine;\npublic class HeavyHit : MonoBehaviour {\n  void Update() {\n    // Heavy logic\n  }\n}`
+                    }
+                ]
+            }
+        };
+
+        let currentProject = "No Project Selected";
+        let currentMechanic = null;
+
+        
+        function toggleMechanics() {
+            const mechanicsContent = document.getElementById('mechanicsContent');
+
+            mechanicsContent.style.display = 
+                (mechanicsContent.style.display === 'block') ? 'none' : 'block';
+                
+        }
+
+        
+        
+        function switchExplorerTab(tab) {
+            
+            document.getElementById('explorerTab').classList.remove('active');
+            document.getElementById('contentExplorerTab').classList.remove('active');
+            document.getElementById('explorer-content').classList.add('hidden');
+            document.getElementById('content-explorer-content').classList.add('hidden');
+            document.getElementById('mechanicsContent').style.display = 'none';
+
+            if (tab === 'explorer') {
+                document.getElementById('explorerTab').classList.add('active');
+                document.getElementById('explorer-content').classList.remove('hidden');
+            } else {
+                document.querySelectorAll('.project-button').forEach(item => item.classList.remove('selected'));
+                document.getElementById('contentExplorerTab').classList.add('active');
+                document.getElementById('content-explorer-content').classList.remove('hidden');
+            }
         }
 
         function toggleHobbys() 
@@ -887,7 +1032,7 @@
         
         function selectBlueprint(element) 
         {
-            document.querySelectorAll('.project-item').forEach(item => 
+            document.querySelectorAll('.project-button').forEach(item => 
             {
                 item.classList.remove('selected');
             });
@@ -901,9 +1046,7 @@
                 element.classList.add("selected");
             }
         }
-        /***********************************************************
-         * 5) Switch Inspector/Graph Tabs (right panel)
-         ***********************************************************/
+        
         function switchTab(tab) {
             document.querySelectorAll('.tab-button').forEach(button => {
                 button.classList.remove('active');
@@ -918,19 +1061,21 @@
             const graphCanvas = document.getElementById('graphCanvas');
 
             if (tab === 'graph') {
-                // Hide inspector, show graph
+                
                 switchExplorerTab('explorer')
                 inspectorView.classList.add('hidden');
                 graphCanvas.classList.remove('hidden');
             } else {
-                // Hide graph, show inspector
+                
                 switchExplorerTab('explorer')
                 inspectorView.classList.remove('hidden');
                 graphCanvas.classList.add('hidden');
             }
         }
 
-        // Default to inspector tab on load
+        
+
+        
         switchTab('inspector');
         switchExplorerTab('explorer');
 
@@ -940,7 +1085,7 @@
             currentMechanic = null;
             switchTab('inspector');
 
-            // Show/hide correct tabs
+            
             const isUnrealProject = projectName.includes("Unreal");
             if (isUnrealProject) {
                 switchTab('graph');
@@ -951,18 +1096,18 @@
             }
             switchExplorerTab('explorer');
 
-            // Clear blueprint selection
+            
             document.querySelectorAll(".blueprint-button").forEach(btn => btn.classList.remove("selected"));
 
-            // Highlight the selected project
-            document.querySelectorAll('.project-item').forEach(i => i.classList.remove('selected'));
+            
+            document.querySelectorAll('.project-button').forEach(i => i.classList.remove('selected'));
             event.target.classList.add('selected');
 
-            // Update scene/inspector with base project info
+            
             document.getElementById('scene-view').innerText = projects[projectName].scene;
             document.getElementById('inspector-view').innerText = projects[projectName].code;
 
-            // Populate mechanics in the bottom panel
+            
             populateMechanicsList(projectName);
 
             
@@ -972,22 +1117,21 @@
         
         function populateMechanicsList(projectName) {
             const mechanicsList = document.getElementById('mechanicsList');
-            mechanicsList.innerHTML = ""; // Clear old
+            mechanicsList.innerHTML = ""; 
 
-            // If project has no mechanics, do nothing
             if (!projects[projectName].mechanics) return;
 
             projects[projectName].mechanics.forEach((mechanic, index) => {
-                // Make a script tile to mimic Unity’s project window
+               
                 const tile = document.createElement('div');
                 tile.classList.add('script-tile');
 
-                // The icon (showing #)
+                
                 const iconDiv = document.createElement('div');
                 iconDiv.classList.add('script-icon');
-                iconDiv.innerText = "#"; // You could use an <img> if you prefer
+                iconDiv.innerText = "#"; 
 
-                // The script name
+                
                 const nameDiv = document.createElement('div');
                 nameDiv.classList.add('script-name');
                 nameDiv.innerText = mechanic.name;
@@ -995,7 +1139,7 @@
                 tile.appendChild(iconDiv);
                 tile.appendChild(nameDiv);
 
-                // On click => load mechanic
+                
                 tile.onclick = () => {
                     loadMechanic(mechanic);
                     document.querySelectorAll('.script-tile').forEach(t => t.classList.remove('selected'));
@@ -1010,7 +1154,7 @@
         function loadMechanic(mechanic) {
             currentMechanic = mechanic;
 
-            // Scene: show screenshot + short info
+           
             const sceneView = document.getElementById('scene-view');
             sceneView.innerHTML = `
                 <div style="margin-bottom: 10px;">
@@ -1019,7 +1163,7 @@
                 <img src="${mechanic.screenshot}" alt="${mechanic.name} screenshot" style="width: 100%; max-width: 400px;"/>
             `;
 
-            // Inspector: show code
+            
             document.getElementById('inspector-view').innerText = mechanic.code;
         }
 
@@ -1052,10 +1196,10 @@
                 };
             };
         });
-        document.querySelectorAll('.project-item').forEach(item => 
+        document.querySelectorAll('.project-button').forEach(item => 
         {
             item.addEventListener('click', function () {
-                document.querySelectorAll('.project-item').forEach(i => i.classList.remove('selected'));
+                document.querySelectorAll('.project-button').forEach(i => i.classList.remove('selected'));
                 this.classList.add('selected');
             });
         });
@@ -1121,7 +1265,7 @@
             document.getElementById('inspector-view').innerText = 'Select a project to display its code.';
             document.getElementById('mechanicsContent').style.display = 'none';
 
-            // Move panels back
+           
             document.getElementById('leftPanel').style.left = initialPositions.leftPanel.left;
             document.getElementById('leftPanel').style.top = initialPositions.leftPanel.top;
             document.getElementById('mainPanel').style.left = initialPositions.mainPanel.left;
@@ -1129,7 +1273,7 @@
             document.getElementById('rightPanel').style.left = initialPositions.rightPanel.left;
             document.getElementById('rightPanel').style.top = initialPositions.rightPanel.top;
 
-            // Resize panels back
+           
             document.getElementById("leftPanel").style.width = initialSizes.leftPanel.width;
             document.getElementById("leftPanel").style.height = initialSizes.leftPanel.height;
             document.getElementById("mainPanel").style.width = initialSizes.mainPanel.width;
@@ -1137,10 +1281,10 @@
             document.getElementById("rightPanel").style.width = initialSizes.rightPanel.width;
             document.getElementById("rightPanel").style.height = initialSizes.rightPanel.height;
 
-            // Clear selection on projects
-            document.querySelectorAll('.project-item').forEach(item => item.classList.remove('selected'));
+            
+            document.querySelectorAll('.project-button').forEach(item => item.classList.remove('selected'));
 
-            // Clear mechanics list
+            
             document.getElementById('mechanicsList').innerHTML = "";
         }
     </script>
