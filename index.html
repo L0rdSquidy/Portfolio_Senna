@@ -288,6 +288,26 @@
             background: #007BFF !important;
         }
 
+        .info-container 
+        {
+            display: flex;
+            margin: 4px 0;
+        }
+        .info-label {
+            width: 110px;
+            color: #ADADAD;
+            font-weight: bold;
+        }
+        .info-link {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease-in-out;
+        }
+        .info-link:hover {
+            color: #1DA1F2; /* Twitter blue or any other highlight color */
+            text-decoration: underline;
+        }
+
 
         
         .footer {
@@ -389,13 +409,13 @@
                     <div class="blueprint-underline"></div>
                     <div class="blueprint-label">Unreal B</div>
                 </div>
-                <div class="project-button" onclick="loadProject('Project C')">
+                <div class="project-button" onclick="loadProject('Unity C')">
                     <img class="project-thumbnail" src="thumbnail_project_c.png" alt="Project C ">
                     <div class="blueprint-underline"></div>
                     <div class="blueprint-label">Project C</div>
                 </div>
-                <div class="project-button" onclick="loadProject('Project D')">
-                    <img class="project-thumbnail" src="thumbnail_project_d.png" alt="Project D Thumbnail">
+                <div class="project-button" onclick="loadProject('Unity D')">
+                    <img class="project-thumbnail" src="thumbnail_project_d.png" alt="Project D ">
                     <div class="blueprint-underline"></div>
                     <div class="blueprint-label">Project D</div>
                 </div>
@@ -465,6 +485,7 @@
         
         switchTab('inspector');
         switchExplorerTab('contentExplorer');
+        loadProject('Contact E');
   
         const sceneView = document.getElementById('scene-view');
         sceneView.innerHTML = ""; 
@@ -534,9 +555,7 @@
     }
         }
         animate();
-  
-       
-        document.getElementById('inspector-view').innerHTML = 
+        const Blueprintinspector = 
             `
                 <div style="
                 font-family: Arial, sans-serif; 
@@ -631,11 +650,331 @@
                         <span>Player_Senna-van-Santen</span>
                     </div>
 
-                    <!-- Address -->
+                    
+
+                    <!-- Country -->
                     <div style="display: flex; margin: 4px 0;">
-                        <span style="width: 110px; color: #ADADAD;">Address</span>
-                        <span>Nassaukade 2 (transform)</span>
+                        <span style="width: 110px; color: #ADADAD;">Country</span>
+                        <span>Netherlands</span>
                     </div>
+
+                    <!-- Name -->
+                    <div style="display: flex; margin: 4px 0;">
+                        <span style="width: 110px; color: #ADADAD;">Class</span>
+                        <span>Game Developer</span>
+                    </div>
+
+                    <!-- Date of Birth -->
+                    <div style="display: flex; margin: 4px 0;">
+                        <span style="width: 110px; color: #ADADAD;">Date of birth</span>
+                        <span>22-07-2007</span>
+                    </div>
+
+                    <!-- School -->
+                    <div style="display: flex; margin: 4px 0;">
+                        <span style="width: 110px; color: #ADADAD;">School</span>
+                        <span>X: Mediacollege &nbsp; Y: Software Dev</span>
+                    </div>
+
+                    <!-- Is Walking -->
+                    <div style="display: flex; margin: 4px 0;">
+                        <span style="width: 110px; color: #ADADAD;">Is Walking</span>
+                        <span>False</span>
+                    </div>
+
+                    <!-- Is Jumping -->
+                    <div style="display: flex; margin: 4px 0;">
+                        <span style="width: 110px; color: #ADADAD;">Is Jumping</span>
+                        <span>False</span>
+                    </div>
+
+                    <!-- Is Falling -->
+                    <div style="display: flex; margin: 4px 0;">
+                        <span style="width: 110px; color: #ADADAD;">Is Falling</span>
+                        <span>False</span>
+                    </div>
+
+                    <!-- Is Attacking -->
+                    <div style="display: flex; margin: 4px 0;">
+                        <span style="width: 110px; color: #ADADAD;">Is Attacking</span>
+                        <span>False</span>
+                    </div>
+
+                    <!-- Max Speed -->
+                    <div style="display: flex; margin: 4px 0;">
+                        <span style="width: 110px; color: #ADADAD;">Max Speed</span>
+                        <span>10</span>
+                    </div>
+
+                    <!-- Jump Force -->
+                    <div style="display: flex; margin: 4px 0; margin-bottom: 8px;">
+                        <span style="width: 110px; color: #ADADAD;">Jump Force</span>
+                        <span>5</span>
+                    </div>
+
+                    <!-- Hobbys foldout (within the same Script section) -->
+                    <div style="display: flex; align-items: center; margin: 4px 0;">
+                        <!-- Arrow -->
+                        <div 
+                        id="hobbysFoldoutArrow" 
+                        style="cursor: pointer; margin-right: 4px;" 
+                        onclick="toggleHobbys()"
+                        >
+                        ▾
+                        </div>
+                        <!-- Foldout label -->
+                        <span style="font-weight: 500;">Hobbys</span>
+                        <!-- Array size box on the right (4 elements now) -->
+                        <div style="
+                        background-color: #1E1E1E; 
+                        padding: 2px 4px; 
+                        border: 1px solid #2B2B2B; 
+                        border-radius: 2px;
+                        margin-left: auto;
+                        ">
+                        4
+                        </div>
+                    </div>
+
+                    <!-- Collapsible Hobbys array -->
+                    <div id="hobbysContainer" style="display: block; margin-left: 16px; margin-top: 4px;">
+                        <!-- Element 0 -->
+                        <div style="display: flex; align-items: center; margin: 4px 0;">
+                        <span style="width: 70px; color: #ADADAD;">Element 0</span>
+                        <div style="
+                            display: flex; 
+                            align-items: center; 
+                            background-color: #1E1E1E; 
+                            border: 1px solid #2B2B2B; 
+                            padding: 2px 4px; 
+                            border-radius: 2px; 
+                            flex-grow: 1;
+                        ">
+                            
+                            <span>Gaming</span>
+                        </div>
+                        <div style="
+                            width: 16px; 
+                            height: 16px; 
+                            margin-left: 4px; 
+                            background: #2B2B2B; 
+                            border: 1px solid #2B2B2B; 
+                            border-radius: 2px; 
+                            cursor: pointer;
+                        "></div>
+                        </div>
+
+                        <!-- Element 1 -->
+                        <div style="display: flex; align-items: center; margin: 4px 0;">
+                        <span style="width: 70px; color: #ADADAD;">Element 1</span>
+                        <div style="
+                            display: flex; 
+                            align-items: center; 
+                            background-color: #1E1E1E; 
+                            border: 1px solid #2B2B2B; 
+                            padding: 2px 4px; 
+                            border-radius: 2px; 
+                            flex-grow: 1;
+                        ">
+                            
+                            <span>Reading</span>
+                        </div>
+                        <div style="
+                            width: 16px; 
+                            height: 16px; 
+                            margin-left: 4px; 
+                            background: #2B2B2B; 
+                            border: 1px solid #2B2B2B; 
+                            border-radius: 2px; 
+                            cursor: pointer;
+                        "></div>
+                        </div>
+
+                        <!-- Element 2 -->
+                        <div style="display: flex; align-items: center; margin: 4px 0;">
+                        <span style="width: 70px; color: #ADADAD;">Element 2</span>
+                        <div style="
+                            display: flex; 
+                            align-items: center; 
+                            background-color: #1E1E1E; 
+                            border: 1px solid #2B2B2B; 
+                            padding: 2px 4px; 
+                            border-radius: 2px; 
+                            flex-grow: 1;
+                        ">
+                            
+                            <span>SkateBoarden</span>
+                        </div>
+                        <div style="
+                            width: 16px; 
+                            height: 16px; 
+                            margin-left: 4px; 
+                            background: #2B2B2B; 
+                            border: 1px solid #2B2B2B; 
+                            border-radius: 2px; 
+                            cursor: pointer;
+                        "></div>
+                        </div>
+
+                        <!-- Element 3 (New) -->
+                        <div style="display: flex; align-items: center; margin: 4px 0;">
+                        <span style="width: 70px; color: #ADADAD;">Element 3</span>
+                        <div style="
+                            display: flex; 
+                            align-items: center; 
+                            background-color: #1E1E1E; 
+                            border: 1px solid #2B2B2B; 
+                            padding: 2px 4px; 
+                            border-radius: 2px; 
+                            flex-grow: 1;
+                        ">
+                            
+                            <span>Coding</span>
+                        </div>
+                        <div style="
+                            width: 16px; 
+                            height: 16px; 
+                            margin-left: 4px; 
+                            background: #2B2B2B; 
+                            border: 1px solid #2B2B2B; 
+                            border-radius: 2px; 
+                            cursor: pointer;
+                        "></div>
+                        </div>
+
+                        <!-- Plus/Minus at the bottom -->
+                        <div style="margin-top: 6px;">
+                        <button style="
+                            background: #3C3C3C; 
+                            border: 1px solid #2B2B2B; 
+                            color: #E2E2E2; 
+                            cursor: pointer; 
+                            margin-right: 4px;
+                            padding: 2px 6px;
+                        ">+</button>
+                        <button style="
+                            background: #3C3C3C; 
+                            border: 1px solid #2B2B2B; 
+                            color: #E2E2E2; 
+                            cursor: pointer;
+                            padding: 2px 6px;
+                        ">-</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
+
+            `;
+        
+        document.getElementById('inspector-view').innerHTML =  Blueprintinspector;
+        
+    }
+    window.loadPlayerPrefab = loadPlayerPrefab;
+  
+    
+  </script>
+  
+      
+
+      
+    <script>
+        const Blueprintinspector = 
+            `
+                <div style="
+                font-family: Arial, sans-serif; 
+                font-size: 13px; 
+                color: #E2E2E2; 
+                background-color: #3C3C3C; 
+                padding: 10px;
+                ">
+
+                <!-- Top row: GameObject name, Tag, Layer, Static -->
+                <div style="
+                    display: flex; 
+                    align-items: center; 
+                    border-bottom: 1px solid #2B2B2B; 
+                    padding-bottom: 4px;
+                    margin-bottom: 6px;
+                ">
+                    <img 
+                    src="cube_icon_url" 
+                    style="width: 16px; height: 16px; margin-right: 6px;" 
+                    alt="Cube Icon"
+                    />
+                    <span style="color: #FFF; font-weight: bold; margin-right: 20px;">Player</span>
+                    <span style="margin-right: 20px;">Tag: Senna</span>
+                    <span style="margin-right: 20px;">Layer: Humanity</span>
+                    <span>Static</span>
+                </div>
+
+                <!-- Transform Component -->
+                <div style="
+                    border: 1px solid #2B2B2B; 
+                    margin-bottom: 8px;
+                ">
+                    <div style="
+                    background-color: #2B2B2B; 
+                    padding: 4px; 
+                    display: flex; 
+                    align-items: center;
+                    ">
+                    <img 
+                        src="transform_icon_url" 
+                        style="width: 16px; height: 16px; margin-right: 6px;" 
+                        alt="Transform Icon"
+                    />
+                    <span style="color: #FFF;">Transform</span>
+                    </div>
+                    <div style="padding: 6px;">
+                    <div style="display: flex; margin: 4px 0;">
+                        <span style="width: 60px; color: #ADADAD;">Position</span>
+                        <span style="margin-right: 16px;">X: 0</span>
+                        <span style="margin-right: 16px;">Y: 0</span>
+                        <span>Z: 0</span>
+                    </div>
+                    <div style="display: flex; margin: 4px 0;">
+                        <span style="width: 60px; color: #ADADAD;">Rotation</span>
+                        <span style="margin-right: 16px;">X: 0</span>
+                        <span style="margin-right: 16px;">Y: 0</span>
+                        <span>Z: 0</span>
+                    </div>
+                    <div style="display: flex; margin: 4px 0;">
+                        <span style="width: 60px; color: #ADADAD;">Scale</span>
+                        <span style="margin-right: 16px;">X: 1</span>
+                        <span style="margin-right: 16px;">Y: 1</span>
+                        <span>Z: 1</span>
+                    </div>
+                    </div>
+                </div>
+
+                <!-- Player_Senna-van-Santen (Script) -->
+                <div style="
+                    border: 1px solid #2B2B2B; 
+                    margin-bottom: 8px;
+                ">
+                    <div style="
+                    background-color: #2B2B2B; 
+                    padding: 4px; 
+                    display: flex; 
+                    align-items: center;
+                    ">
+                    <img 
+                        src="script_icon_url" 
+                        style="width: 16px; height: 16px; margin-right: 6px;" 
+                        alt="Script Icon"
+                    />
+                    <span style="color: #FFF;">Player_Senna-van-Santen (Script)</span>
+                    </div>
+                    <div style="padding: 6px;">
+
+                    <!-- Script Name -->
+                    <div style="display: flex; margin: 4px 0;">
+                        <span style="width: 110px; color: #ADADAD;">Script</span>
+                        <span>Player_Senna-van-Santen</span>
+                    </div>
+
 
                     <!-- Country -->
                     <div style="display: flex; margin: 4px 0;">
@@ -853,19 +1192,102 @@
 
             `;
 
-        
-    }
-    window.loadPlayerPrefab = loadPlayerPrefab;
-  
-    
-  </script>
-  
-      
 
-      
-    <script>
-        
 
+
+            const Contactinspector = 
+            `
+                <div style="
+                font-family: Arial, sans-serif; 
+                font-size: 13px; 
+                color: #E2E2E2; 
+                background-color: #3C3C3C; 
+                padding: 10px;
+                ">
+
+                <!-- Top row: GameObject name, Tag, Layer, Static -->
+                <div style="
+                    display: flex; 
+                    align-items: center; 
+                    border-bottom: 1px solid #2B2B2B; 
+                    padding-bottom: 4px;
+                    margin-bottom: 6px;
+                ">
+                    <img 
+                    src="cube_icon_url" 
+                    style="width: 16px; height: 16px; margin-right: 6px;" 
+                    alt="Cube Icon"
+                    />
+                    <span style="color: #FFF; font-weight: bold; margin-right: 20px;">Player</span>
+                    <span style="margin-right: 20px;">Tag: Senna</span>
+                    <span style="margin-right: 20px;">Layer: Humanity</span>
+                    <span>Static</span>
+                </div>
+
+
+                <!-- Player_Senna-van-Santen (Script) -->
+                <div style="
+                    border: 1px solid #2B2B2B; 
+                    margin-bottom: 8px;
+                ">
+                    <div style="
+                    background-color: #2B2B2B; 
+                    padding: 4px; 
+                    display: flex; 
+                    align-items: center;
+                    ">
+                    <img 
+                        src="script_icon_url" 
+                        style="width: 16px; height: 16px; margin-right: 6px;" 
+                        alt="Script Icon"
+                    />
+                    <span style="color: #FFF;">Contact</span>
+                    </div>
+                    <div style="padding: 6px;">
+
+                    <!-- Script Name -->
+                    <div style="display: flex; margin: 4px 0;">
+                        <span style="width: 110px; color: #ADADAD;">Script</span>
+                        <span>Player_Senna-van-Santen</span>
+                    </div>
+
+
+                    <!-- Country -->
+                    <div style="display: flex; margin: 4px 0;">
+                        <span style="width: 110px; color: #ADADAD;">Country</span>
+                        <span>Netherlands</span>
+                    </div>
+
+                    <!-- Name -->
+                    <div style="display: flex; margin: 4px 0;" class = "info-container"> 
+                        <span style="width: 110px; color: #ADADAD;" class="info-label">Github👉</span>
+                        <span style="color: #ADADAD;"><a href="https://github.com/L0rdSquidy" class="info-link">LordSquidy(click)</a></span>
+                    </div>
+
+                    <!-- Date of Birth -->
+                    <div style="display: flex; margin: 4px 0;" class = "info-container">
+                        <span style="width: 110px; color: #ADADAD;" class="info-label">Linkedin👉</span>
+                        <span style="color: #ADADAD;"><a href="https://nl.linkedin.com/in/senna-van-santen-9860b8353" class="info-link">Senna van Santen(click)</a></span>
+                    </div>
+
+                    <!-- School -->
+                    <div style="display: flex; margin: 4px 0;" class = "info-container">
+                        <span style="width: 110px; color: #ADADAD;" class="info-label">Instagram👉</span>
+                        <span style="color: #ADADAD;"><a href="https://www.instagram.com/senna_dev/" class="info-link">Senna Dev(click)</a></span>
+                    </div>
+
+                    <!-- Is Walking -->
+                    <div style="display: flex; margin: 4px 0;" class = "info-container">
+                        <span style="width: 110px; color: #ADADAD;" class="info-label">Twitter👉</span>
+                        <span style="color: #ADADAD;"><a href="URL" class="info-link">Senna Dev(click)</a></span>
+                    </div>
+
+                    
+                </div>
+                </div>
+            `;
+        
+        
         
         const initialPositions = {
             leftPanel: { left: "0px", top: "-3px" },
@@ -952,7 +1374,7 @@
                     }
                 ]
             },
-            "Project C": {
+            "Unity C": {
                 scene: "Scene for Project C",
                 code: `Code for Project C\n\nfunction main() {\n  console.log("ProjectC Code is Running...");\n}`,
                 mechanics: [
@@ -964,7 +1386,7 @@
                     }
                 ]
             },
-            "Project D": {
+            "Unity D": {
                 scene: "Scene for Project D",
                 code: `Code for Project D\n\nfunction main() {\n  console.log("ProjectD Code is Running...");\n}`,
                 mechanics: [
@@ -973,6 +1395,16 @@
                         info: "Player movement script with jump, run, etc.",
                         screenshot: "MovementExample.png",
                         code: `// Heavy hit script\nusing UnityEngine;\npublic class HeavyHit : MonoBehaviour {\n  void Update() {\n    // Heavy logic\n  }\n}`
+                    }
+                ]
+            },
+            "Contact E": {
+                mechanics: [
+                    {
+                        name: "About me",
+                    },
+                    {
+                        name: "Contact",
                     }
                 ]
             }
@@ -1080,14 +1512,20 @@
 
             
             const isUnrealProject = projectName.includes("Unreal");
+            const isUnityProject = projectName.includes("Unity");
             if (isUnrealProject) {
                 switchTab('graph');
                 switchExplorerTab('explorer');
-            } else {
+            } else if (isUnityProject) {
                 switchTab('inspector');
                 switchExplorerTab('explorer');
+            } 
+            else
+            {
+                switchTab('inspector');
+                switchExplorerTab('contentExplorer');
             }
-            switchExplorerTab('explorer');
+            // switchExplorerTab('explorer');
 
             
             document.querySelectorAll(".blueprint-button").forEach(btn => btn.classList.remove("selected"));
@@ -1146,10 +1584,17 @@
        
         function loadMechanic(mechanic) {
             currentMechanic = mechanic;
-
+            const isContact = mechanic.name.includes("Contact");
+            const isAboutMe = mechanic.name.includes("About");
            
             const sceneView = document.getElementById('scene-view');
-            sceneView.innerHTML = `
+            if (isContact) {
+                document.getElementById('inspector-view').innerHTML = Contactinspector;
+            } else if (isAboutMe) 
+            {
+                document.getElementById('inspector-view').innerHTML =  Blueprintinspector;
+            }else{
+                sceneView.innerHTML = `
                 <div style="margin-bottom: 10px;">
                     <strong>${mechanic.name}</strong> - ${mechanic.info}
                 </div>
@@ -1158,6 +1603,8 @@
 
             
             document.getElementById('inspector-view').innerText = mechanic.code;
+            }
+            
         }
 
        
