@@ -200,7 +200,7 @@
         #explorer-content 
         {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(120px, 2fr));
         grid-auto-rows: min-content;
         width: 100%;
         height: 100%;
@@ -241,8 +241,8 @@
 
                 
         .project-button {
-            width: 130px; 
-            height: 170px; 
+            width: 90%; 
+            height: 160px; 
             background: linear-gradient(to bottom, #222222, #111111);
             border-radius: 6px;
             border: 1px solid #222;
@@ -523,11 +523,11 @@
         
         const loader = new FBXLoader();
         const textureLoader = new THREE.TextureLoader();
-        const fbxTexture = textureLoader.load('FbxRender.png');
+        const fbxTexture = textureLoader.load('MeTexture.png');
 
-        loader.load('ME7.fbx', function (object) {
+        loader.load('Person.fbx', function (object) {
             
-            object.scale.set(1, 1, 1);
+            object.scale.set(1.1, 1, 1.1);
             
            
             object.traverse(child => {
