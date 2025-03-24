@@ -504,8 +504,8 @@
         const scene = new THREE.Scene();
         scene.background = new THREE.Color(0x3c3c3c); 
   
-        const camera = new THREE.PerspectiveCamera(70, sceneView.clientWidth / sceneView.clientHeight, 0.6, 2000);
-        camera.position.set(0, 200, 500);
+        const camera = new THREE.PerspectiveCamera(70, sceneView.clientWidth / sceneView.clientHeight, 1, 2000);
+        camera.position.set(0, 250, 500);
         
         
         const ambientLight = new THREE.AmbientLight(0xffffff, 1);
@@ -516,7 +516,7 @@
   
         
         const controls = new OrbitControls(camera, renderer.domElement);
-        controls.target.set(0, 100, 0);
+        controls.target.set(0, 50, 0);
         controls.update();
         
         let loadedObject = null;
