@@ -423,7 +423,7 @@
             
             <div id="content-explorer-content" class="hidden">
                 <!-- Example blueprint button (unchanged) -->
-                <div onclick="loadPlayerPrefab()">
+                <div onclick="loadPlayerPrefab(), toggleTransForm()">
                     <div class="blueprint-button" onclick="selectBlueprint(this)">
                         <div class="blueprint-underline"></div>
                         <div class="blueprint-label">BP_Player<br>Blueprint Class</div>
@@ -438,7 +438,10 @@
             <div class="draggable">
                 <div class="hub">Scene View</div>
             </div>
-            <p id="scene-view">Select a project to display its scene.</p>
+            <p id="scene-view">
+                Select a project to display its scene. ||
+                Click Content Explorer for Player-Aboutme-Contact
+            </p>
             <div class="resize-handle"></div>
         </div>
 
@@ -588,7 +591,7 @@
                 <div style="
                     border: 1px solid #2B2B2B; 
                     margin-bottom: 8px;
-                ">
+                " onclick="toggleTransForm()">
                     <div style="
                     background-color: #2B2B2B; 
                     padding: 4px; 
@@ -600,9 +603,17 @@
                         style="width: 16px; height: 16px; margin-right: 6px;" 
                         alt="Transform Icon"
                     />
+                    <!-- Arrow -->
+                        <div 
+                        id="transformFoldoutArrow" 
+                        style="cursor: pointer; margin-right: 4px;" 
+                        onclick="toggleTransForm()"
+                        >
+                        ▾
+                        </div>
                     <span style="color: #FFF;">Transform</span>
                     </div>
-                    <div style="padding: 6px;">
+                    <div style="padding: 6px;" id="transformContainer">
                     <div style="display: flex; margin: 4px 0;">
                         <span style="width: 60px; color: #ADADAD;">Position</span>
                         <span style="margin-right: 16px;">X: 0</span>
@@ -640,6 +651,13 @@
                         style="width: 16px; height: 16px; margin-right: 6px;" 
                         alt="Script Icon"
                     />
+                    <div 
+                        id="hobbysFoldoutArrow" 
+                        style="cursor: pointer; margin-right: 4px;" 
+                        onclick="toggleHobbys()"
+                        >
+                        ▾
+                        </div>
                     <span style="color: #FFF;">Player_Senna-van-Santen (Script)</span>
                     </div>
                     <div style="padding: 6px;">
@@ -688,17 +706,7 @@
                         <span>False</span>
                     </div>
 
-                    <!-- Is Falling -->
-                    <div style="display: flex; margin: 4px 0;">
-                        <span style="width: 110px; color: #ADADAD;">Is Falling</span>
-                        <span>False</span>
-                    </div>
-
-                    <!-- Is Attacking -->
-                    <div style="display: flex; margin: 4px 0;">
-                        <span style="width: 110px; color: #ADADAD;">Is Attacking</span>
-                        <span>False</span>
-                    </div>
+                    
 
                     <!-- Max Speed -->
                     <div style="display: flex; margin: 4px 0;">
@@ -710,6 +718,14 @@
                     <div style="display: flex; margin: 4px 0; margin-bottom: 8px;">
                         <span style="width: 110px; color: #ADADAD;">Jump Force</span>
                         <span>5</span>
+                    </div>
+
+                    <div style="display: flex; margin: 4px 0; align-items: flex-start;">
+                        <span style="width: 110px; color: #ADADAD;">Profile</span>
+                        <span style="flex: 1;">
+                            Im an Software Developer Student who is curious to find out new things 
+                            and meet new people. Due to my work environments I have learned to listen effectively and solve problems well.
+                        </span>
                     </div>
 
                     <!-- Hobbys foldout (within the same Script section) -->
@@ -860,7 +876,9 @@
                             padding: 2px 6px;
                         ">-</button>
                         </div>
+                        
                     </div>
+                    
                     </div>
                 </div>
                 </div>
@@ -913,7 +931,7 @@
                 <div style="
                     border: 1px solid #2B2B2B; 
                     margin-bottom: 8px;
-                ">
+                " onclick="toggleTransForm()">
                     <div style="
                     background-color: #2B2B2B; 
                     padding: 4px; 
@@ -924,10 +942,20 @@
                         src="transform_icon_url" 
                         style="width: 16px; height: 16px; margin-right: 6px;" 
                         alt="Transform Icon"
+                        onclick="toggleTransForm()"
                     />
-                    <span style="color: #FFF;">Transform</span>
+                    <!-- Arrow -->
+                        <div 
+                        id="transformFoldoutArrow" 
+                        style="cursor: pointer; margin-right: 4px;" 
+                        onclick="toggleTransForm()"
+                        >
+                        ▾
+                        </div>
+                    <span style="color: #FFF;" >Transform</span>
                     </div>
-                    <div style="padding: 6px;">
+                    
+                    <div style="padding: 6px;" id="transformContainer">
                     <div style="display: flex; margin: 4px 0;">
                         <span style="width: 60px; color: #ADADAD;">Position</span>
                         <span style="margin-right: 16px;">X: 0</span>
@@ -947,6 +975,7 @@
                         <span>Z: 1</span>
                     </div>
                     </div>
+                    
                 </div>
 
                 <!-- Player_Senna-van-Santen (Script) -->
@@ -1012,17 +1041,7 @@
                         <span>False</span>
                     </div>
 
-                    <!-- Is Falling -->
-                    <div style="display: flex; margin: 4px 0;">
-                        <span style="width: 110px; color: #ADADAD;">Is Falling</span>
-                        <span>False</span>
-                    </div>
 
-                    <!-- Is Attacking -->
-                    <div style="display: flex; margin: 4px 0;">
-                        <span style="width: 110px; color: #ADADAD;">Is Attacking</span>
-                        <span>False</span>
-                    </div>
 
                     <!-- Max Speed -->
                     <div style="display: flex; margin: 4px 0;">
@@ -1036,8 +1055,16 @@
                         <span>5</span>
                     </div>
 
+                    <div style="display: flex; margin: 4px 0; align-items: flex-start;">
+                        <span style="width: 110px; color: #ADADAD;">Profile</span>
+                        <span style="flex: 1;">
+                            Im an Software Developer Student who is curious to find out new things 
+                            and meet new people. Due to my work environments I have learned to listen effectively and solve problems well.
+                        </span>
+                    </div>
+
                     <!-- Hobbys foldout (within the same Script section) -->
-                    <div style="display: flex; align-items: center; margin: 4px 0;">
+                    <div style="display: flex; align-items: center; margin: 4px 0;" >
                         <!-- Arrow -->
                         <div 
                         id="hobbysFoldoutArrow" 
@@ -1283,7 +1310,7 @@
                     </div>
                     <div style="display: flex; margin: 4px 0;" class = "info-container">
                         <span style="width: 110px; color: #ADADAD;" class="info-label">CV👉</span>
-                        <span style="color: #ADADAD;"><a href="CV-Senna Van Santen.pdf" class="info-link">CV Senna van Santen(click)</a></span>
+                        <span style="color: #ADADAD;"><a href="CV Senna Van Santen English.pdf" class="info-link">CV Senna van Santen(click)</a></span>
                     </div>
                     
                 </div>
@@ -1449,6 +1476,21 @@
         {
             const container = document.getElementById('hobbysContainer');
             const arrow = document.getElementById('hobbysFoldoutArrow');
+            
+            if (container.style.display === 'none') {
+                container.style.display = 'block';
+                arrow.textContent = '▾';
+            } else {
+                container.style.display = 'none';
+                arrow.textContent = '▸';
+            }
+        }
+        
+        function toggleTransForm() 
+        {
+            const container = document.getElementById('transformContainer');
+            const arrow = document.getElementById('transformFoldoutArrow');
+            
             if (container.style.display === 'none') {
                 container.style.display = 'block';
                 arrow.textContent = '▾';
@@ -1596,6 +1638,7 @@
             } else if (isAboutMe) 
             {
                 document.getElementById('inspector-view').innerHTML =  Blueprintinspector;
+                toggleTransForm()
             }else{
                 sceneView.innerHTML = `
                 <div style="margin-bottom: 10px;">
