@@ -258,8 +258,8 @@
         
         .project-button .project-thumbnail {
             width: 100%;
-            height: 100px; 
-            object-fit: cover;
+            height: 150px; 
+            object-fit:contain;
         }
 
         .project-button .blueprint-underline {
@@ -400,7 +400,7 @@
             </div>
             <div id="explorer-content">
                 <div class="project-button" onclick="loadProject('Unity A')">
-                    <img class="project-thumbnail" src="thumbnail_unity_a.png" alt="Unity A ">
+                    <img class="project-thumbnail" src="AllThatRemains.png" alt="Unity A ">
                     <div class="blueprint-underline"></div>
                     <div class="blueprint-label">Unity A</div>
                 </div>
@@ -540,11 +540,11 @@
                 }
             });
     
-    scene.add(object);
-    loadedObject = object;
-}, undefined, function (error) {
-    console.error('Error loading FBX:', error);
-});
+            scene.add(object);
+            loadedObject = object;
+        }, undefined, function (error) {
+            console.error('Error loading FBX:', error);
+    });
 
   
         
@@ -1337,58 +1337,28 @@
                 code: `Code for Project A\n\nfunction main() {\n  console.log("ProjectA Code is Running...");\n}`,
                 mechanics: [
                     {
-                        name: "ASyncJump",
-                        info: "Async-based jumping logic for the player.",
-                        screenshot: "AsyncJumpExample.png",
+                        name: "Jump",
+                        info: "procental velocity based jumping logic for the player.",
+                        screenshot: "Jumping.gif",
                         code: `// ASyncJump script\nusing UnityEngine;\npublic class ASyncJump : MonoBehaviour {\n  void Jump() {\n    // Jump logic\n  }\n}`
                     },
                     {
-                        name: "BouncingBall",
-                        info: "Demonstration of a bouncing ball physics script.",
-                        screenshot: "BouncingBallExample.png",
+                        name: "Swinging",
+                        info: "Physics based Swinging script.",
+                        screenshot: "Swing.gif",
                         code: `// BouncingBall script\nusing UnityEngine;\npublic class BouncingBall : MonoBehaviour {\n  // Implementation...\n}`
                     },
                     {
-                        name: "DragPoint",
+                        name: "Movement",
                         info: "Allows the player to drag objects around.",
                         screenshot: "DragPointExample.png",
                         code: `// DragPoint script\nusing UnityEngine;\npublic class DragPoint : MonoBehaviour {\n  // Implementation...\n}`
                     },
                     {
-                        name: "Linear",
-                        info: "Simple linear movement demonstration.",
-                        screenshot: "LinearExample.png",
-                        code: `// Linear script\n// ...`
-                    },
-                    {
-                        name: "LinearFriction",
-                        info: "Movement with friction applied linearly.",
-                        screenshot: "LinearFrictionExample.png",
-                        code: `// LinearFriction script\n// ...`
-                    },
-                    {
-                        name: "QuadraticFriction",
-                        info: "Movement with friction that scales quadratically.",
-                        screenshot: "QuadraticFrictionExample.png",
-                        code: `// QuadraticFriction script\n// ...`
-                    },
-                    {
-                        name: "triangle mesh",
-                        info: "Generating or manipulating a triangle mesh in code.",
-                        screenshot: "TriangleMeshExample.png",
-                        code: `// triangle mesh script\n// ...`
-                    },
-                    {
-                        name: "TwoLines",
-                        info: "Sample script that draws two lines in the scene.",
-                        screenshot: "TwoLinesExample.png",
-                        code: `// TwoLines script\n// ...`
-                    },
-                    {
-                        name: "TwoPoints",
-                        info: "Calculates something between two points.",
-                        screenshot: "TwoPointsExample.png",
-                        code: `// TwoPoints script\n// ...`
+                        name: "PathFinder",
+                        info: "A pathfinder made with navmesh making sure it shows the most effiecient way posible to your target",
+                        screenshot: "Pathfinder.gif",
+                        code: ""
                     }
                 ]
             },
@@ -1437,11 +1407,27 @@
                         name: "Contact",
                     }
                 ]
+            },
+            "Unity Speedshort": {
+                mechanics: [
+                    {
+                        name: "About me",
+                    },
+                    {
+                        name: "Contact",
+                    },
+                    {
+                        name: "Unity All that remains",
+                    },
+                    {
+                        name: "Unreal Neon"
+                    }
+                ]
             }
         };
 
         let currentProject = "No Project Selected";
-        let currentMechanic = null;
+        // let currentMechanic = null;
 
         
         function toggleMechanics() {
@@ -1451,6 +1437,8 @@
                 (mechanicsContent.style.display === 'block') ? 'none' : 'block';
                 
         }
+
+       
 
         
         
@@ -1548,6 +1536,8 @@
         
         switchTab('inspector');
         switchExplorerTab('explorer');
+        populateMechanicsList('Unity Speedshort');
+        document.getElementById('mechanicsContent').style.display = 'block';
 
         
         function loadProject(projectName) {
@@ -1631,6 +1621,8 @@
             currentMechanic = mechanic;
             const isContact = mechanic.name.includes("Contact");
             const isAboutMe = mechanic.name.includes("About");
+            const isPopularUN = mechanic.name.includes("Uni");
+            const isPopularUR = mechanic.name.includes("Unr");
            
             const sceneView = document.getElementById('scene-view');
             if (isContact) {
@@ -1639,12 +1631,19 @@
             {
                 document.getElementById('inspector-view').innerHTML =  Blueprintinspector;
                 toggleTransForm()
-            }else{
+            }else if (isPopularUN) 
+            {
+                loadProject('Unity A')
+            } else if (isPopularUR) 
+            {   
+                loadProject('Unreal B')
+            } else 
+            {
                 sceneView.innerHTML = `
                 <div style="margin-bottom: 10px;">
                     <strong>${mechanic.name}</strong> - ${mechanic.info}
                 </div>
-                <img src="${mechanic.screenshot}" alt="${mechanic.name} screenshot" style="width: 100%; max-width: 400px;"/>
+                <img src="${mechanic.screenshot}" alt="${mechanic.name} screenshot" style="width: 100%; max-width: 800px;"/>
             `;
 
             
@@ -1749,7 +1748,8 @@
             document.querySelectorAll(".blueprint-button").forEach(btn => btn.classList.remove("selected"));
             document.getElementById('scene-view').innerText = 'Select a project to display its scene.';
             document.getElementById('inspector-view').innerText = 'Select a project to display its code.';
-            document.getElementById('mechanicsContent').style.display = 'none';
+            document.getElementById('mechanicsContent').style.display = 'block';
+            
 
            
             document.getElementById('leftPanel').style.left = initialPositions.leftPanel.left;
@@ -1772,6 +1772,7 @@
 
             
             document.getElementById('mechanicsList').innerHTML = "";
+            populateMechanicsList('Unity Speedshort');
         }
     </script>
 </body>
