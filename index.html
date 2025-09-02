@@ -400,7 +400,7 @@
             </div>
             <div id="explorer-content">
                 <div class="project-button" onclick="loadProject('Unity A')">
-                    <img class="project-thumbnail" src="AllThatRemains.png" alt="Unity A ">
+                    <img class="project-thumbnail" src="Game_poster.png" alt="Unity A ">
                     <div class="blueprint-underline"></div>
                     <div class="blueprint-label">Unity A</div>
                 </div>
@@ -410,7 +410,7 @@
                     <div class="blueprint-label">Unreal B</div>
                 </div>
                 <div class="project-button" onclick="loadProject('Unity C')">
-                    <img class="project-thumbnail" src="thumbnail_project_c.png" alt="Project C ">
+                    <img class="project-thumbnail" src="AllThatRemains.png" alt="Project C ">
                     <div class="blueprint-underline"></div>
                     <div class="blueprint-label">Project C</div>
                 </div>
@@ -422,7 +422,7 @@
             </div>
             
             <div id="content-explorer-content" class="hidden">
-                <!-- Example blueprint button (unchanged) -->
+               
                 <div onclick="loadPlayerPrefab(), toggleTransForm()">
                     <div class="blueprint-button" onclick="selectBlueprint(this)">
                         <div class="blueprint-underline"></div>
@@ -433,7 +433,7 @@
             <div class="resize-handle"></div>
         </div>
 
-        <!-- MAIN PANEL (Scene View) -->
+       
         <div class="panel main-panel" id="mainPanel">
             <div class="draggable">
                 <div class="hub">Scene View</div>
@@ -445,7 +445,6 @@
             <div class="resize-handle"></div>
         </div>
 
-        <!-- RIGHT PANEL (Inspector / Graph) -->
         <div class="panel right-panel" id="rightPanel">
             <div class="draggable">
                 <div class="tab-container">
@@ -461,10 +460,9 @@
         </div>
     </div>
 
-    <!-- FOOTER (Mechanics / Scripts) -->
+
     <div class="footer" onclick="toggleMechanics()"><div class="footerhub"> Mechanics</div></div>
     <div class="mechanics-content" id="mechanicsContent">
-        <!-- This is where we show the mechanics (or scripts). We can style them to look like Unity’s project window. -->
         <div class="scripts-container" id="mechanicsList"></div>
     </div>
 
@@ -635,7 +633,8 @@
                     </div>
                 </div>
 
-                <!-- Player_Senna-van-Santen (Script) -->
+                <!-- 
+                    Senna-van-Santen (Script) -->
                 <div style="
                     border: 1px solid #2B2B2B; 
                     margin-bottom: 8px;
@@ -1333,6 +1332,43 @@
         
         const projects = {
             "Unity A": {
+                scene: "Scene for Project C",
+                code: `Code for Project C\n\nfunction main() {\n  console.log("ProjectC Code is Running...");\n}`,
+                mechanics: [
+                    {
+                        name: "Movement",
+                        info: "Player movement script with jump, run, etc.",
+                        screenshot: "DoubleAlianceMovement.gif",
+                        code: `// Movement script\nusing UnityEngine;\npublic class PlayerMovement : MonoBehaviour {\n  void Update() {\n    // Movement logic\n  }\n}`
+                    },
+                    {
+                        name: "Baking",
+                        info: "A minigame comprised of 2 parts first you raise the ovens temprature then you bake it at just the right time",
+                        screenshot: "Baking.gif",
+                        code: ""
+                    },
+                    {
+                        name: "Trading",
+                        info: "interact live with eachother through trading to get the recources you need",
+                        screenshot: "Trading.gif",
+                        code: ""
+                    }
+                ]
+                
+            },
+            "Unreal B": {
+                scene: "Scene for Project B",
+                code: `Code for Project B\n\nfunction main() {\n  console.log("ProjectB Code is Running...");\n}`,
+                mechanics: [
+                    {
+                        name: "Blueprint_Attack",
+                        info: "Blueprint-based attacking logic in Unreal.",
+                        screenshot: "BlueprintAttack.png",
+                        code: `# Unreal Blueprint pseudo-code\nEvent Graph:\n  OnAttack -> DoDamage -> PlayAnimation\n`
+                    }
+                ]
+            },
+            "Unity C": {
                 scene: "Scene for Project A",
                 code: `Code for Project A\n\nfunction main() {\n  console.log("ProjectA Code is Running...");\n}`,
                 mechanics: [
@@ -1359,30 +1395,6 @@
                         info: "A pathfinder made with navmesh making sure it shows the most effiecient way posible to your target",
                         screenshot: "Pathfinder.gif",
                         code: ""
-                    }
-                ]
-            },
-            "Unreal B": {
-                scene: "Scene for Project B",
-                code: `Code for Project B\n\nfunction main() {\n  console.log("ProjectB Code is Running...");\n}`,
-                mechanics: [
-                    {
-                        name: "Blueprint_Attack",
-                        info: "Blueprint-based attacking logic in Unreal.",
-                        screenshot: "BlueprintAttack.png",
-                        code: `# Unreal Blueprint pseudo-code\nEvent Graph:\n  OnAttack -> DoDamage -> PlayAnimation\n`
-                    }
-                ]
-            },
-            "Unity C": {
-                scene: "Scene for Project C",
-                code: `Code for Project C\n\nfunction main() {\n  console.log("ProjectC Code is Running...");\n}`,
-                mechanics: [
-                    {
-                        name: "Movement",
-                        info: "Player movement script with jump, run, etc.",
-                        screenshot: "MovementExample.png",
-                        code: `// Movement script\nusing UnityEngine;\npublic class PlayerMovement : MonoBehaviour {\n  void Update() {\n    // Movement logic\n  }\n}`
                     }
                 ]
             },
@@ -1417,7 +1429,7 @@
                         name: "Contact",
                     },
                     {
-                        name: "Unity All that remains",
+                        name: "Double Alliance Unity",
                     },
                     {
                         name: "Unreal Neon"
