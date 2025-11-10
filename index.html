@@ -20,6 +20,40 @@
             height: 100vh;
         }
 
+        /* ENSURE a permanent black box behind inspector content */
+        #inspector-view {
+        background: #272727 !important;
+        color: #e6e6e6 !important;
+        padding: 8px;
+        border-radius: 3px;
+        box-shadow: inset 0 0 0 1px rgba(37, 37, 37, 0.24);
+        }
+
+        .inspector-code {
+        background: transparent !important;
+        }
+
+        /* Popup / expand button styles — append to your <style> */
+        .expand-btn {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        width: 28px;
+        height: 28px;
+        border-radius: 4px;
+        border: 1px solid rgba(255,255,255,0.06);
+        background: linear-gradient(#111,#222);
+        color: #ddd;
+        cursor: pointer;
+        font-weight: bold;
+        z-index: 50;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        }
+
+        
+
         
         .top-bar {
             background: #1e1e1e;
@@ -551,8 +585,10 @@
             controls.update();
             renderer.render(scene, camera);
             if (loadedObject) {
-       
+       if (!InputEvent.onMouseMove) {
         loadedObject.rotation.y += 0.01;
+       }
+        
     }
         }
         animate();
@@ -575,7 +611,7 @@
                     margin-bottom: 6px;
                 ">
                     <img 
-                    src="cube_icon_url" 
+                    src="GameObject.png" 
                     style="width: 16px; height: 16px; margin-right: 6px;" 
                     alt="Cube Icon"
                     />
@@ -597,7 +633,7 @@
                     align-items: center;
                     ">
                     <img 
-                        src="transform_icon_url" 
+                        src="transform.png" 
                         style="width: 16px; height: 16px; margin-right: 6px;" 
                         alt="Transform Icon"
                     />
@@ -646,7 +682,7 @@
                     align-items: center;
                     ">
                     <img 
-                        src="script_icon_url" 
+                        src="Script.png" 
                         style="width: 16px; height: 16px; margin-right: 6px;" 
                         alt="Script Icon"
                     />
@@ -916,7 +952,7 @@
                     margin-bottom: 6px;
                 ">
                     <img 
-                    src="cube_icon_url" 
+                    src="GameObject.png" 
                     style="width: 16px; height: 16px; margin-right: 6px;" 
                     alt="Cube Icon"
                     />
@@ -938,7 +974,7 @@
                     align-items: center;
                     ">
                     <img 
-                        src="transform_icon_url" 
+                        src="transform.png" 
                         style="width: 16px; height: 16px; margin-right: 6px;" 
                         alt="Transform Icon"
                         onclick="toggleTransForm()"
@@ -989,7 +1025,7 @@
                     align-items: center;
                     ">
                     <img 
-                        src="script_icon_url" 
+                        src="Script.png" 
                         style="width: 16px; height: 16px; margin-right: 6px;" 
                         alt="Script Icon"
                     />
@@ -1287,28 +1323,28 @@
                     <!-- Name -->
                     <div style="display: flex; margin: 4px 0;" class = "info-container"> 
                         <span style="width: 110px; color: #ADADAD;" class="info-label">Github👉</span>
-                        <span style="color: #ADADAD;"><a href="https://github.com/L0rdSquidy" class="info-link">LordSquidy(click)</a></span>
+                        <span style="color: #ADADAD;"><a href="https://github.com/L0rdSquidy" class="info-link" target="_blank" rel="noopener noreferrer">LordSquidy(click)</a></span>
                     </div>
 
                     <!-- Date of Birth -->
                     <div style="display: flex; margin: 4px 0;" class = "info-container">
                         <span style="width: 110px; color: #ADADAD;" class="info-label">Linkedin👉</span>
-                        <span style="color: #ADADAD;"><a href="https://nl.linkedin.com/in/senna-van-santen-9860b8353" class="info-link">Senna van Santen(click)</a></span>
+                        <span style="color: #ADADAD;"><a href="https://nl.linkedin.com/in/senna-van-santen-9860b8353" class="info-link" target="_blank" rel="noopener noreferrer">Senna van Santen(click)</a></span>
                     </div>
 
                     <!-- School -->
                     <div style="display: flex; margin: 4px 0;" class = "info-container">
                         <span style="width: 110px; color: #ADADAD;" class="info-label">Instagram👉</span>
-                        <span style="color: #ADADAD;"><a href="https://www.instagram.com/senna_dev/" class="info-link">Senna Dev(click)</a></span>
+                        <span style="color: #ADADAD;"><a href="https://www.instagram.com/senna_dev/" class="info-link" target="_blank" rel="noopener noreferrer">Senna Dev(click)</a></span>
                     </div>
 
                     <!-- Is Walking -->
                     <div style="display: flex; margin: 4px 0;" class = "info-container">
-                        <span style="width: 110px; color: #ADADAD;" class="info-label">Twitter👉</span>
+                        <span style="width: 110px; color: #ADADAD;" class="info-label" target='_blank'>Twitter👉</span>
                         <span style="color: #ADADAD;"><a href="URL" class="info-link">Senna Dev(click)</a></span>
                     </div>
                     <div style="display: flex; margin: 4px 0;" class = "info-container">
-                        <span style="width: 110px; color: #ADADAD;" class="info-label">CV👉</span>
+                        <span style="width: 110px; color: #ADADAD;" class="info-label" target='_blank'>CV👉</span>
                         <span style="color: #ADADAD;"><a href="CV Senna Van Santen English.pdf" class="info-link">CV Senna van Santen(click)</a></span>
                     </div>
                     
@@ -1332,26 +1368,130 @@
         
         const projects = {
             "Unity A": {
-                scene: "Scene for Project C",
+                scene: "The Sweden project is an project that i made with an team of 7 people over the time of 1 month. its an multiplayer party game where you and your friend locally and trade with eachother to get recources to complete minigames and win the game. check out the full code at my ",
                 code: `Code for Project C\n\nfunction main() {\n  console.log("ProjectC Code is Running...");\n}`,
                 mechanics: [
                     {
                         name: "Movement",
-                        info: "Player movement script with jump, run, etc.",
+                        info: "Player movement script created navmesh agents to move around the map, its an minimalistic script purely made for gamejam purposes. for the full code check my <a href='https://github.com/L0rdSquidy/Team-2-Game/tree/Developing/Team2Game/Assets/Scripts/ChefMinigame' class='info-link' target='_blank' rel='noopener noreferrer'>github</a>",
                         screenshot: "DoubleAlianceMovement.gif",
-                        code: `// Movement script\nusing UnityEngine;\npublic class PlayerMovement : MonoBehaviour {\n  void Update() {\n    // Movement logic\n  }\n}`
+                        code: `public class ToTarget : MonoBehaviour
+{
+    [SerializeField] Transform target;
+    [SerializeField] private Animator Player;
+    NavMeshAgent agent;
+
+    void Start()
+    {
+        
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+    }
+
+    void Update()
+    {
+        agent.SetDestination(target.position);
+        if (agent.velocity.magnitude > 0)
+        {
+            Player.ResetTrigger("Stop");
+            Player.Play("Walking");
+        }else
+        {
+            Player.SetTrigger("Stop");
+        }
+    }
+}`
                     },
                     {
                         name: "Baking",
-                        info: "A minigame comprised of 2 parts first you raise the ovens temprature then you bake it at just the right time",
+                        info: "A minigame comprised of 2 parts first you raise the ovens temprature then you bake it at just the right time <a href='https://github.com/L0rdSquidy/Team-2-Game/tree/Developing/Team2Game/Assets/Scripts/ChefMinigame' class='info-link' target='_blank' rel='noopener noreferrer'>github</a>",
                         screenshot: "Baking.gif",
-                        code: ""
+                        code: `if (WaitTime < 0)
+		{
+			if (Arrow.value == 1)
+			{
+				Dough.Play("BreadBake");
+			} else
+			{
+				PercentBaked = (1 - Arrow.value) / (1 - ChanceBar.value);
+				Dough.speed = PercentBaked * (1/0.267f);
+				Debug.Log(PercentBaked);
+				if (PercentBaked > 1.2)
+				{
+					Debug.Log("hello");	
+					Dough.Play("BurntBread");
+					Bread.sprite = BurntDough;
+				}
+			}
+			if (Arrow.value != 0 &&  ChanceBar.value > 0 && !ClickedArrow)
+			{
+				Arrow.value -= 0.01f / 4;
+			} 
+			if (Arrow.value <= 0 && !ClickedArrow)
+			{
+				Debug.Log("burnt");
+				Dough.Play("BurntBread");
+				ClickedArrow = true;
+				SwitchScene = true;
+			}
+			
+			if (Input.GetMouseButtonDown(0))
+			{
+				ClickedArrow = true;
+				if (ChanceBar.value >= Arrow.value - 0.1 && ChanceBar.value <= Arrow.value + 0.1)
+				{
+					Debug.Log("Bread");
+					ResourceManager.Instance.AddResource(ResourceManager.ResourceType.Bread, 1);
+					SwitchScene = true;
+				}else
+				{
+					Debug.Log("burnt");
+					Dough.Play("BurntBread");
+					SwitchScene = true;
+				}
+			}`
                     },
                     {
                         name: "Trading",
-                        info: "interact live with eachother through trading to get the recources you need",
+                        info: "interact live with eachother through trading to get the recources you need. this script was pear programmed with one of the students in sweden. the multiplayer system and trading had us in a bit of a chokehold back then but we were able to scrape by. for the full code please check my <a href='https://github.com/L0rdSquidy/Team-2-Game/tree/Developing/Team2Game/Assets/Multiplayer%20stuff/Scripts' class='info-link' target='_blank' rel='noopener noreferrer'>github</a>",
                         screenshot: "Trading.gif",
-                        code: ""
+                        code: `private void AdjustInventories() //bool adjustPlayerInv, bool adjustShipInv
+    {
+
+        if (isOwnShip && isDutch)//ship is dutch, player is dutch
+        {
+            for (int i = 0; i <= Resource.Instance.amsPlayerInv.Count - 1; i++)//foreach(int i in playerInventory) 
+            {
+                Resource.Instance.amsShipInv[i] = shipInventory[i];
+                Resource.Instance.amsPlayerInv[i] = playerInventory[i];
+            }
+        }
+        else if (isOwnShip && !isDutch)//ship is swedish, player is swedish
+        {
+            for (int i = 0; i <= Resource.Instance.amsPlayerInv.Count- 1; i++)//foreach(int i in playerInventory) 
+            {
+                Resource.Instance.stockShipInv[i] = shipInventory[i];
+                Resource.Instance.stockPlayerInv[i] = playerInventory[i];
+            }
+        }
+        else if (!isOwnShip && isDutch)//ship is swedish, player is dutch
+        {
+            for (int i = 0; i <= Resource.Instance.amsPlayerInv.Count- 1; i++)//foreach(int i in playerInventory) 
+            {
+                Resource.Instance.stockShipInv[i] = shipInventory[i];
+                Resource.Instance.amsPlayerInv[i] = playerInventory[i];
+            }
+        }
+        else if (!isOwnShip && !isDutch)//ship is dutch, player is swedish
+        {
+            for (int i = 0; i <= Resource.Instance.amsPlayerInv.Count - 1; i++)//foreach(int i in playerInventory) 
+            {
+                Resource.Instance.amsShipInv[i] = shipInventory[i];
+                Resource.Instance.stockPlayerInv[i] = playerInventory[i];
+            }
+        }
+    }`
                     }
                 ]
                 
@@ -1369,32 +1509,166 @@
                 ]
             },
             "Unity C": {
-                scene: "Scene for Project A",
-                code: `Code for Project A\n\nfunction main() {\n  console.log("ProjectA Code is Running...");\n}`,
+                scene: "an project started in my first year of game development i made this project with 4 other people over the time of 2 and a half months. its an 3D platformer where you have to use different mechanics to get through the levels and reach the end. later i myself took the project back up and worked on it further. dont forget to check out its github: https://github.com/L0rdSquidy/OneThatRemainsReOpened/tree/main",
+                code: `Code for Project A\n\nfunction main() {\n  console.log("check my ");\n}`,
                 mechanics: [
                     {
-                        name: "Jump",
-                        info: "procental velocity based jumping logic for the player.",
+                        name: "Mathmetical Movement",
+                        info: `an mathmatical movement with procental velocity based jumping logic for the player to get the best possible feeling when jumping.\n for more code go to my <a href='https://github.com/L0rdSquidy/OneThatRemainsReOpened/blob/main/One%20That%20Remains/Assets/Assets/Scipts/Player/PlayerMovementGrappling.cs' class='info-link' target='_blank' rel='noopener noreferrer'>github</a>`,
                         screenshot: "Jumping.gif",
-                        code: `// ASyncJump script\nusing UnityEngine;\npublic class ASyncJump : MonoBehaviour {\n  void Jump() {\n    // Jump logic\n  }\n}`
+                        code: `using UnityEngine;\nprivate void Jump()
+	{
+		float JumpPercentages =  ((transform.position.y - lastGroundedPos.y)/(FullMaxJumpHeight-lastGroundedPos.y)) * 100;
+		// Debug.Log("JP%" + JumpPercentages);
+		// reset y velocity
+		if (IsJumping && !readyToJump)
+		{ 
+			exitingSlope = true;
+
+			if (JumpPercentages < 50)
+			{
+				rb.velocity = new Vector3(rb.velocity.x, jumpForce + 0.1f, rb.velocity.z);
+			} else if (JumpPercentages >= 50 && JumpPercentages < 90)
+			{
+				float jumpProgress = Mathf.Clamp01((JumpPercentages - 50) / 50f); 
+				float reducedJumpForce = Mathf.SmoothStep(jumpForce, 0, jumpProgress);
+				rb.velocity = new Vector3(rb.velocity.x, reducedJumpForce, rb.velocity.z);
+			} else if (JumpPercentages > 90 && !grounded)
+			{				
+				IsJumping = false;
+				IsFalling = true;
+				
+			} else
+			{
+				IsFalling = false;
+				IsJumping = false;
+				
+			}
+		}
+		
+		if (IsFalling)
+		{
+			ResetJump();
+			rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y - FallingMultiplier, rb.velocity.z);
+		}
+		
+
+`
                     },
                     {
                         name: "Swinging",
-                        info: "Physics based Swinging script.",
+                        info: "math based Swinging script. for more code check out the <a href='https://github.com/L0rdSquidy/OneThatRemainsReOpened/blob/main/One%20That%20Remains/Assets/Assets/Scipts/Player/SwingingDone.cs' target='_blank' rel='noopener noreferrer'>github</a>",
                         screenshot: "Swing.gif",
-                        code: `// BouncingBall script\nusing UnityEngine;\npublic class BouncingBall : MonoBehaviour {\n  // Implementation...\n}`
-                    },
-                    {
-                        name: "Movement",
-                        info: "Allows the player to drag objects around.",
-                        screenshot: "DragPointExample.png",
-                        code: `// DragPoint script\nusing UnityEngine;\npublic class DragPoint : MonoBehaviour {\n  // Implementation...\n}`
+                        code: `private void OdmGearMovement()
+    {
+        // right
+        if (Input.GetKey(KeyCode.D)) rb.AddForce(orientation.right * horizontalThrustForce * Time.deltaTime);
+        // left
+        if (Input.GetKey(KeyCode.A)) rb.AddForce(-orientation.right * horizontalThrustForce * Time.deltaTime);
+        // forward
+        if (Input.GetKey(KeyCode.W)) rb.AddForce(orientation.forward * horizontalThrustForce * Time.deltaTime);
+        // shorten cable
+        if (Input.GetKey(KeyCode.Space))
+        {
+            Vector3 directionToPoint = swingPoint - transform.position;
+            rb.AddForce(directionToPoint.normalized * forwardThrustForce * Time.deltaTime);
+            float distanceFromPoint = Vector3.Distance(transform.position, swingPoint);
+            joint.maxDistance = distanceFromPoint * 0.8f;
+            joint.minDistance = distanceFromPoint * 0.25f;
+        }
+        // extend cable
+        if (Input.GetKey(KeyCode.S))
+        {
+            float extendedDistanceFromPoint = Vector3.Distance(transform.position, swingPoint) + extendCableSpeed;
+            joint.maxDistance = extendedDistanceFromPoint * 0.8f;
+            joint.minDistance = extendedDistanceFromPoint * 0.25f;
+        }
+    }
+`
                     },
                     {
                         name: "PathFinder",
-                        info: "A pathfinder made with navmesh making sure it shows the most effiecient way posible to your target",
+                        info: "A pathfinder made with navmesh making sure it shows the most effiecient way posible to your target. while also following the path set in place by the developer. please check the <a href='https://github.com/L0rdSquidy/OneThatRemainsReOpened/blob/main/One%20That%20Remains/Assets/Assets/Scipts/Player/PathFinder.cs' target='_blank' rel='noopener noreferrer'>github</a> for more code",
                         screenshot: "Pathfinder.gif",
-                        code: ""
+                        code:` void TryFindBestQuestPath()
+	{
+		Collider[] hits = null;
+		hits = Physics.OverlapSphere(transform.position, searchRadius, objectiveLayer);
+		float bestCost = Mathf.Infinity;
+		Vector3 bestTargetPos = Vector3.zero;
+		Debug.Log(hits[0]);
+		if (agent.isOnNavMesh == false)
+		{
+			Debug.LogError("Agent is not on the NavMesh!");
+			return;
+		}
+
+
+		foreach (var hit in hits)
+		{
+			NavMeshPath path;
+			path = new NavMeshPath();
+			Debug.Log(NavMesh.CalculatePath(transform.position, hit.transform.position, NavMesh.AllAreas, path));
+			Debug.Log($"Path status: {path.status} | Corners: {path.corners.Length}");
+			if (!NavMesh.CalculatePath(transform.position, hit.transform.position, NavMesh.AllAreas, path))
+				{
+					Debug.LogWarning("Failed to calculate path to: " + hit.transform.name);
+					continue;
+				}
+				if (path.status != NavMeshPathStatus.PathComplete)
+				{
+					Debug.LogWarning("Incomplete path to: " + hit.transform.name);
+					continue;
+				}
+			float cost = EvaluatePathCost(path);
+			Debug.Log(cost);
+			if (cost < bestCost)
+			{
+				bestCost = cost;
+				bestTargetPos = hit.transform.position;
+				
+				// Debug.Log(hit.transform.position);
+			}
+		}
+		Debug.Log(bestCost);
+		if (bestCost < Mathf.Infinity)
+		{
+			agent.SetDestination(bestTargetPos);
+			SpawnPathParticles(agent.path);
+			clearRoutine = StartCoroutine(AutoClearParticles());
+			
+		}
+	}
+
+	float EvaluatePathCost(NavMeshPath path)
+	{
+		float cost = 0f;
+		Vector3[] corners = path.corners;
+
+		for (int i = 0; i < corners.Length - 1; i++)
+		{
+			Vector3 A = corners[i];
+			Vector3 B = corners[i + 1];
+			float dist = Vector3.Distance(A, B);
+			cost += dist;
+
+			// vertical penalty
+			float dh = B.y - A.y;
+			if (dh > jumpHeightThreshold)      cost += jumpPenalty;
+			else if (-dh > fallHeightThreshold) cost += fallPenalty;
+
+			// turn penalty
+			if (i > 0)
+			{
+				Vector3 prevDir = (A - corners[i - 1]).normalized;
+				Vector3 currDir = (B - A).normalized;
+				float angle = Vector3.Angle(prevDir, currDir);
+				cost += angle * turnAngleWeight;
+			}
+		}
+
+		return cost;
+	}`
                     }
                 ]
             },
@@ -1505,6 +1779,7 @@
             document.querySelectorAll('.project-button').forEach(item => 
             {
                 item.classList.remove('selected');
+                document.querySelectorAll(".blueprint-button").forEach(btn => btn.classList.remove("selected"));
             });
             if (element.classList.contains("selected")) 
             {
@@ -1574,8 +1849,6 @@
             }
             // switchExplorerTab('explorer');
 
-            
-            document.querySelectorAll(".blueprint-button").forEach(btn => btn.classList.remove("selected"));
 
             
             document.querySelectorAll('.project-button').forEach(i => i.classList.remove('selected'));
@@ -1663,7 +1936,43 @@
             }
             
         }
+        // ensure the style is only appended once and force the wrapper to re-run
+        style.id = 'inspector-code-style';
+        if (!document.head.querySelector('#inspector-code-style')) {
+            document.head.appendChild(style);
+        }
+        // re-apply wrapper in case inspector content was replaced later
 
+        function escapeHtml(str) {
+            return str
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;");
+        }
+
+        function applyInspectorCodeStyling() {
+            const view = document.getElementById('inspector-view');
+            if (!view) return;
+
+            // don't touch when inspector already contains structured HTML (like Blueprintinspector)
+            if (view.querySelector('.inspector-code')) return;
+
+            // if the view only contains a single text node, treat it as code and wrap it
+            const onlyTextNode = view.childNodes.length === 1 && view.childNodes[0].nodeType === Node.TEXT_NODE;
+            if (onlyTextNode && view.innerText.trim() !== '') {
+                const txt = view.innerText;
+                view.innerHTML = `<pre class="inspector-code">${escapeHtml(txt)}</pre>`;
+            }
+        }
+
+        // observe changes to the inspector view and apply the wrapper automatically
+        const inspectorView = document.getElementById('inspector-view');
+        if (inspectorView) {
+            const observer = new MutationObserver(() => applyInspectorCodeStyling());
+            observer.observe(inspectorView, { childList: true, characterData: true, subtree: true });
+
+            // call once to catch any existing plain text
+        }
        
         document.querySelectorAll('.draggable').forEach(el => {
             el.onmousedown = function (event) {
@@ -1699,8 +2008,7 @@
                 document.querySelectorAll('.project-button').forEach(i => i.classList.remove('selected'));
                 this.classList.add('selected');
             });
-        });
-
+        });        
         document.querySelectorAll('.resize-handle').forEach(handle => {
             handle.onmousedown = function (event) {
                 event.stopPropagation();
