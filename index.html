@@ -27,6 +27,13 @@
         padding: 8px;
         border-radius: 3px;
         box-shadow: inset 0 0 0 1px rgba(37, 37, 37, 0.24);
+        font-family: Consolas, 'Courier New', monospace !important;
+        }
+
+        .code-inspector {
+            white-space: pre-wrap !important;
+            word-wrap: break-word !important;
+            font-family: Consolas, 'Courier New', monospace !important;
         }
 
         .inspector-code {
@@ -329,7 +336,7 @@
         }
         .info-label {
             width: 110px;
-            color: #ADADAD;
+            color: #ffffff;
             font-weight: bold;
         }
         .info-link {
@@ -339,6 +346,20 @@
         }
         .info-link:hover {
             color: #1DA1F2; /* Twitter blue or any other highlight color */
+            text-decoration: underline;
+        }
+
+        .info-link2 {
+            color: #eaff00;
+            text-decoration: none;
+            transition: color 0.3s ease-in-out;
+            text-decoration: underline;
+        }
+
+        .info-yout {
+            color: #ff0000;
+            text-decoration: none;
+            transition: color 0.3s ease-in-out;
             text-decoration: underline;
         }
 
@@ -436,23 +457,24 @@
                 <div class="project-button" onclick="loadProject('Unity A')">
                     <img class="project-thumbnail" src="Game_poster.png" alt="Unity A ">
                     <div class="blueprint-underline"></div>
-                    <div class="blueprint-label">Unity A</div>
+                    <div class="blueprint-label">Unity Sweden</div>
                 </div>
-                <div class="project-button" onclick="loadProject('Unreal B')">
-                    <img class="project-thumbnail" src="thumbnail_unreal_b.png" alt="Unreal B ">
+                <div class="project-button" onclick="loadProject('Unity B')">
+                    <img class="project-thumbnail" src="PassivePopupController.png" alt="Unity B ">
                     <div class="blueprint-underline"></div>
-                    <div class="blueprint-label">Unreal B</div>
+                    <div class="blueprint-label">Unity AI</div>
                 </div>
-                <div class="project-button" onclick="loadProject('Unity C')">
-                    <img class="project-thumbnail" src="AllThatRemains.png" alt="Project C ">
+                <div class="project-button" onclick="loadProject('Unreal C')">
+                    <img class="project-thumbnail" src="Neon.jpg" alt="Project C ">
                     <div class="blueprint-underline"></div>
-                    <div class="blueprint-label">Project C</div>
+                    <div class="blueprint-label">Unreal NeonOrigin</div>
                 </div>
                 <div class="project-button" onclick="loadProject('Unity D')">
-                    <img class="project-thumbnail" src="thumbnail_project_d.png" alt="Project D ">
+                    <img class="project-thumbnail" src="HungryNight.png" alt="Project D ">
                     <div class="blueprint-underline"></div>
-                    <div class="blueprint-label">Project D</div>
+                    <div class="blueprint-label">Unity GameSlice</div>
                 </div>
+               
             </div>
             
             <div id="content-explorer-content" class="hidden">
@@ -487,7 +509,7 @@
                 </div>
             </div>
             <div class="tab-content">
-                <div id="inspector-view">Select a project to display its code.</div>
+                <div id="inspector-view" >Check below for fast links to projects and about me!!</div>
                 <canvas id="graphCanvas" class="hidden"></canvas>
             </div>
             <div class="resize-handle"></div>
@@ -517,10 +539,7 @@
   
     
     function loadPlayerPrefab() {
-        
-        switchTab('inspector');
-        switchExplorerTab('contentExplorer');
-        loadProject('Contact E');
+        // loadProject('Contact E');
   
         const sceneView = document.getElementById('scene-view');
         sceneView.innerHTML = ""; 
@@ -592,6 +611,7 @@
     }
         }
         animate();
+        
         const Blueprintinspector = 
             `
                 <div style="
@@ -922,10 +942,18 @@
             `;
         
         document.getElementById('inspector-view').innerHTML =  Blueprintinspector;
+        // selectBlueprint(document.querySelector(".blueprint-button"));
         
+
     }
-    window.loadPlayerPrefab = loadPlayerPrefab;
-  
+    
+    
+document.addEventListener("DOMContentLoaded", () => {
+        loadPlayerPrefab();
+        loadPlayerPrefab();
+        // toggleTransForm(); 
+    });
+window.loadPlayerPrefab = loadPlayerPrefab;
     
   </script>
   
@@ -1368,12 +1396,12 @@
         
         const projects = {
             "Unity A": {
-                scene: "The Sweden project is an project that i made with an team of 7 people over the time of 1 month. its an multiplayer party game where you and your friend locally and trade with eachother to get recources to complete minigames and win the game. check out the full code at my ",
-                code: `Code for Project C\n\nfunction main() {\n  console.log("ProjectC Code is Running...");\n}`,
+                scene: "The Sweden project is an project that i made with an team of 7 people over the time of 1 month. its an multiplayer party game where you and your friend locally play and trade with eachother to get recources, to complete minigames and win the game. the game is set in the 1600s during the dutch swedish war. you play as either a dutch person or swedish person trying to get as much recources as possible to win the war / to prevent your country from flouding.",
+                code: `Code for Project S.w.e.d.e.n\n\nfunction main() {\n  console.log("Dont forget to check out my <a href='https://github.com/L0rdSquidy/Team-2-Game/tree/main/Team2Game' class='info-link2' target='_blank' rel='noopener noreferrer'>Github</a>! there was also an documentary made, dont forget to check it out on <a href='https://www.youtube.com/watch?v=Ben1HHvRK5o' class='info-yout' target='_blank' rel='noopener noreferrer'>youtube</a>");\n}`,
                 mechanics: [
                     {
                         name: "Movement",
-                        info: "Player movement script created navmesh agents to move around the map, its an minimalistic script purely made for gamejam purposes. for the full code check my <a href='https://github.com/L0rdSquidy/Team-2-Game/tree/Developing/Team2Game/Assets/Scripts/ChefMinigame' class='info-link' target='_blank' rel='noopener noreferrer'>github</a>",
+                        info: "Player movement script created navmesh agents to move around the map, its an minimalistic script purely made for gamejam purposes. for the full code check my <a href='https://github.com/L0rdSquidy/Team-2-Game/tree/Developing/Team2Game/Assets/Scripts/ChefMinigame' class='info-link2' target='_blank' rel='noopener noreferrer'>github</a>",
                         screenshot: "DoubleAlianceMovement.gif",
                         code: `public class ToTarget : MonoBehaviour
 {
@@ -1405,7 +1433,7 @@
                     },
                     {
                         name: "Baking",
-                        info: "A minigame comprised of 2 parts first you raise the ovens temprature then you bake it at just the right time <a href='https://github.com/L0rdSquidy/Team-2-Game/tree/Developing/Team2Game/Assets/Scripts/ChefMinigame' class='info-link' target='_blank' rel='noopener noreferrer'>github</a>",
+                        info: "A minigame comprised of 2 parts first you raise the ovens temprature then you bake it at just the right time <a href='https://github.com/L0rdSquidy/Team-2-Game/tree/Developing/Team2Game/Assets/Scripts/ChefMinigame' class='info-link2' target='_blank' rel='noopener noreferrer'>github</a>",
                         screenshot: "Baking.gif",
                         code: `if (WaitTime < 0)
 		{
@@ -1454,7 +1482,7 @@
                     },
                     {
                         name: "Trading",
-                        info: "interact live with eachother through trading to get the recources you need. this script was pear programmed with one of the students in sweden. the multiplayer system and trading had us in a bit of a chokehold back then but we were able to scrape by. for the full code please check my <a href='https://github.com/L0rdSquidy/Team-2-Game/tree/Developing/Team2Game/Assets/Multiplayer%20stuff/Scripts' class='info-link' target='_blank' rel='noopener noreferrer'>github</a>",
+                        info: "interact live with eachother through trading to get the recources you need. this script was pear programmed with one of the students in sweden. the multiplayer system and trading had us in a bit of a chokehold back then but we were able to scrape by. for the full code please check my <a href='https://github.com/L0rdSquidy/Team-2-Game/tree/Developing/Team2Game/Assets/Multiplayer%20stuff/Scripts' class='info-link2' target='_blank' rel='noopener noreferrer'>github</a>",
                         screenshot: "Trading.gif",
                         code: `private void AdjustInventories() //bool adjustPlayerInv, bool adjustShipInv
     {
@@ -1492,195 +1520,615 @@
             }
         }
     }`
+                    }, 
+                    {
+                        name: "Farmland",
+                        info: `The FarmLand script manages a farm plot in the sweden game. It handles:
+
+Assigning crop instances to farm tiles over time.
+
+Tracking whether the farm is fully planted.
+
+Harvesting grown crops and updating resources.`,
+                        screenshot: "Farmland.gif",
+                        code: `public void WheeetHarvest()
+{
+    Sickle.Play("Harvest");
+    List<GameObject> HarvestSoils = FarmPlaces.Where(obj => obj.CompareTag("Planted")).ToList();
+    List<GameObject> WheetList = new List<GameObject>();
+    List<GameObject> ToBeSoilList = new List<GameObject>();
+    fullGrown = false;
+    
+    foreach (var soil in HarvestSoils)
+    {
+        if (soil.transform.childCount > 0) 
+        {
+            GameObject child = soil.transform.GetChild(0).gameObject;
+
+            if (child.CompareTag("Grown"))
+            {
+                ToBeSoilList.Add(soil);
+                WheetList.Add(child);
+            }
+        }
+    }
+    
+    Debug.Log("Weet harvested: " + WheetList.Count);
+    ResourceManager.Instance.AddResource(ResourceManager.ResourceType.Wheat, WheetList.Count);
+
+    foreach (var wheet in WheetList)
+    {
+        wheet.SetActive(false);
+        Destroy(wheet);
+    }
+    
+    foreach (var soil in ToBeSoilList)
+    {
+        soil.tag = "Soil";
+    }
+}`
                     }
                 ]
                 
             },
-            "Unreal B": {
-                scene: "Scene for Project B",
-                code: `Code for Project B\n\nfunction main() {\n  console.log("ProjectB Code is Running...");\n}`,
+            "Unity B": {
+                scene: `This is an project i made from an idea i had when i came to this school. 
+                an magic system run by the choices from the user. from this idea i made this project, 
+                it incorperates AI to take the personality of the user and create an passive abilty with parameters so that it would be able to be implemented imeadiatly.
+                please check out the mechanics and code down below`,
+                code: `Code for Project A.I.\n\nfunction main() {\n  console.log("Check out the <a href='https://github.com/L0rdSquidy/Ai-game-corporation/tree/Dev' class='info-link2' target='_blank' rel='noopener noreferrer'>Github</a>");\n}`,
                 mechanics: [
                     {
-                        name: "Blueprint_Attack",
-                        info: "Blueprint-based attacking logic in Unreal.",
-                        screenshot: "BlueprintAttack.png",
-                        code: `# Unreal Blueprint pseudo-code\nEvent Graph:\n  OnAttack -> DoDamage -> PlayAnimation\n`
+                        name: "ollamaNetwork",
+                        info: "\nA static utility class for communicating with a local Ollama API from Unity.\n Handles sending chat messages, receiving model responses, and listing available models. \nfor more code check out the <a href='https://github.com/L0rdSquidy/Ai-game-corporation/blob/Dev/To%20Start/Assets/Scripts/Magic%20system/AI/OllamaNetwork.cs' class='info-link2' target='_blank' rel='noopener noreferrer'>Github</a>",
+                        screenshot: "OllamaNetworkDebug.png",
+                        code: `code snippit\npublic static async Task<string> SendAndGetAssistantTextAsync(List<OllamaNetwork.ChatMessage> messages)
+{
+    var requestBody = new OllamaNetwork.ChatRequestBody
+    {
+        model = OllamaNetwork.GetDefaultModel(),
+        messages = messages,
+        temperature = 0.0,
+        top_p = 0.1,
+        max_tokens = 1224,
+        stream = false
+    };
+
+    string json = JsonConvert.SerializeObject(requestBody);
+    using var request = new UnityWebRequest(OllamaNetwork.ApiChatUrl, "POST");
+    request.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(json));
+    request.downloadHandler = new DownloadHandlerBuffer();
+    request.SetRequestHeader("Content-Type", "application/json");
+
+    await request.SendWebRequest();
+
+    if (request.result != UnityWebRequest.Result.Success)
+        return null;
+
+    var response = JsonConvert.DeserializeObject<OllamaNetwork.ChatResponseBody>(request.downloadHandler.text);
+    return response?.message?.content;
+}
+`
+                    }, 
+                    {
+                        name: "PassiveGenerator",
+                        info: "The PassiveGenerator is responsible for generating character passives using an LLM.It builds prompts, sends them to the model, validates the returned JSON, fixes errors, and stores the final passives. it also handels new attempts and the handeling of the passives when made. check out the rest of the code at my <a href='https://github.com/L0rdSquidy/Ai-game-corporation/blob/Dev/To%20Start/Assets/Scripts/Magic%20system/AI/PassiveGenerator.cs' class='info-link2' target='_blank' rel='noopener noreferrer'>Github</a>",
+                        screenshot: "PassiveGenerator.png",
+                        code: `public static async Task<List<PassiveDefinition>> GenerateForCharacter(
+    string characterId,
+    string personality,
+    int count = 2,
+    string correction = "",
+    string model = null)
+{
+    // Determine character element
+    string element = CharacterStore.GetElementForCharacter(characterId);
+    if (string.IsNullOrEmpty(element))
+    {
+        element = ElementPicker.PickRandomElement();
+        CharacterStore.SetElementForCharacter(characterId, element);
+    }
+
+    // Build prompt messages
+    var messages = new List<OllamaNetwork.ChatMessage>
+    {
+        new OllamaNetwork.ChatMessage { role = "system", content = systemPrompt },
+        new OllamaNetwork.ChatMessage { role = "user", content =
+            $"Generate {count} passive abilities for this character:\n\"{personality}\"\n\nElement for this character: \"{element}\"" }
+    };
+
+    // Send to LLM API
+    string assistantText = await OllamaNetwork.SendAndGetAssistantTextAsync(messages, model);
+    if (string.IsNullOrWhiteSpace(assistantText))
+        return new List<PassiveDefinition>();
+
+    // Parse the JSON response
+    List<PassiveDefinition> parsed = ParseAssistantJsonRobust(assistantText);
+    if (parsed.Count == 0)
+        return new List<PassiveDefinition>();
+
+    // Normalize & validate effects
+    for (int i = parsed.Count - 1; i >= 0; i--)
+    {
+        var p = parsed[i];
+        p.trigger = NormalizeTrigger(p.trigger);
+
+        if (!ValidateAndFixPassive(p, element, out string err))
+            parsed.RemoveAt(i);
+    }
+
+    // Optional inversion mechanic
+    bool inverted = MaybeInvertPassives(parsed, characterId);
+
+    // Store final passives
+    CharacterStore.AddPassivesToCharacter(characterId, parsed);
+
+    return parsed;
+}
+`,
+                    }, 
+                    {
+                        name: "CharacterStore",
+                        info: "The CharacterStore class serves as the central storage system for all character passives and elemental assignments in the game. Its main purpose is to manage, cache, and persist passive ability data for each character so that it remains consistent across game sessions. dont forget to check out the <a href='https://github.com/L0rdSquidy/Ai-game-corporation/blob/Dev/To%20Start/Assets/Scripts/Magic%20system/Passives/CharacterStore.cs' class='info-link2' target='_blank' rel='noopener noreferrer'>github</a> for more code",
+                        screenshot: "CharacterStore.png",
+                        code: `public static void AddPassivesToCharacter(string characterId, List<PassiveDefinition> passives)
+{
+    EnsureLoaded();
+    if (passives == null || passives.Count == 0) return;
+
+    if (!passivesMap.ContainsKey(characterId)) passivesMap[characterId] = new List<PassiveDefinition>();
+    passivesMap[characterId].AddRange(passives);
+
+    Debug.Log($"[CharacterStore] Added {passives.Count} passive(s) to '{characterId}'. Now has {passivesMap[characterId].Count} passive(s).");
+    SaveToDisk();
+}
+
+private static void EnsureLoaded()
+{
+    if (_loadedFromDisk) return;
+    LoadFromDisk();
+}
+
+private static void LoadFromDisk()
+{
+    _loadedFromDisk = true;
+    try
+    {
+        if (!File.Exists(SaveFilePath))
+        {
+            passivesMap = new Dictionary<string, List<PassiveDefinition>>();
+            Debug.Log($"[CharacterStore] No passives save file found at {SaveFilePath}. Starting fresh.");
+            return;
+        }
+
+        var json = File.ReadAllText(SaveFilePath);
+        if (string.IsNullOrWhiteSpace(json))
+        {
+            passivesMap = new Dictionary<string, List<PassiveDefinition>>();
+            return;
+        }
+
+        var dict = JsonConvert.DeserializeObject<Dictionary<string, List<PassiveDefinition>>>(json);
+        passivesMap = dict ?? new Dictionary<string, List<PassiveDefinition>>();
+        Debug.Log($"[CharacterStore] Loaded passives for {passivesMap.Count} character(s) from {SaveFilePath}.");
+    }
+    catch (Exception ex)
+    {
+        Debug.LogError($"[CharacterStore] Failed to load passives from disk: {ex.Message}\nPath: {SaveFilePath}");
+        passivesMap = new Dictionary<string, List<PassiveDefinition>>();
+    }
+}
+
+private static void SaveToDisk()
+{
+    try
+    {
+        var dir = Path.GetDirectoryName(SaveFilePath);
+        if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
+
+        var json = JsonConvert.SerializeObject(passivesMap, Formatting.Indented);
+        var tmp = SaveFilePath + ".tmp";
+        File.WriteAllText(tmp, json);
+        if (File.Exists(SaveFilePath)) File.Delete(SaveFilePath);
+        File.Move(tmp, SaveFilePath);
+
+        Debug.Log($"[CharacterStore] Saved passives for {passivesMap.Count} character(s) to {SaveFilePath}.");
+    }
+    catch (Exception ex)
+    {
+        Debug.LogError($"[CharacterStore] Failed to save passives to disk: {ex.Message}\nPath: {SaveFilePath}");
+    }
+}
+`
+
+                    }, 
+                    {
+                        name: "PassivePopupController",
+                        info: "present generated “Passive” abilities to the player in a popup UI, created from a short personality string. The class handles input validation, invoking a generation service (with retries), preserving a snapshot of current passives, rendering results (cards or text preview), and reporting status/errors. as well as the id set for the characters. for more code check out the <a href='https://github.com/L0rdSquidy/Ai-game-corporation/blob/Dev/To%20Start/Assets/Scripts/Magic%20system/Passives/PassivePopupController.cs' class='info-link2' target='_blank' rel='noopener noreferrer'>github</a> ",
+                        screenshot: "PassivePopupController.png",
+                        code: `async void OnGenerateClicked()
+{
+    CardPanel.SetActive(true);
+
+    string personality = personalityInput.text.Trim();
+    if (string.IsNullOrEmpty(personality))
+    {
+        statusText.text = "Please enter a brief personality description.";
+        return;
+    }
+    // Backup current passives
+    snapshotBeforeGen = CharacterStore.GetPassivesDeepCopy(characterId);
+    generateButton.interactable = false;
+    statusText.text = "Generating passive...";
+    try
+    {
+        // Generate new passives with retry logic
+        lastGenerated = await PassiveGenerator.GenerateWithRetries(
+            characterId,
+            personality,
+            generateCount,
+            retryAttempts
+        );
+        if (lastGenerated != null && lastGenerated.Count > 0)
+        {
+            ClearCards();
+            BuildCards(lastGenerated);
+            statusText.text = "Preview generated. Choose one above.";
+        }
+        else
+        {
+            ClearCards();
+            statusText.text = "No valid passive generated. Try again.";
+        }
+    }
+    catch (Exception ex)
+    {
+        Debug.LogError("[PassivePopup] Generation error: " + ex);
+        statusText.text = "Error during generation.";
+    }
+    finally
+    {
+        generateButton.interactable = true;
+    }
+}
+private void BuildCards(List<PassiveDefinition> passives)
+{
+    foreach (var p in passives)
+    {
+        var card = Instantiate(cardPrefab, cardsContainer);
+        card.name = $"PassiveCard_{p.name}";
+
+        string text =
+            $"Name: {p.name}\n" +
+            $"Element: {p.element}\n" +
+            $"{p.description}\n" +
+            $"Trigger: {p.trigger}  Target: {p.target}\nEffects:\n";
+
+        foreach (var e in p.effects)
+        {
+            string val = e.parameters.valueType == "percent"
+                ? $"{e.parameters.value}%"
+                : e.parameters.value.ToString();
+
+            text += $" - {e.effectType}: {val}\n";
+        }
+
+        AddText(card, text);
+    }
+}
+private void ClearCards()
+{
+    for (int i = cardsContainer.childCount - 1; i >= 0; i--)
+        Destroy(cardsContainer.GetChild(i).gameObject);
+}
+`
+                    },
+                    {
+                        name: "ElementPicker",
+                        info: "An weighted random picker for elements. it picks an element based on predefined weights to ensure a balanced distribution. after the element is picked the passive generator grabs the picked element and that element is the permanent element for the user. for more code check out the <a href='https://github.com/L0rdSquidy/Ai-game-corporation/blob/Dev/To%20Start/Assets/Scripts/Magic%20system/Element%20picker/ElementPicker.cs' class='info-link2' target='_blank' rel='noopener noreferrer'>github</a>",
+                        screenshot: "ElementPicker.png",
+                        code: `private static readonly Dictionary<string, int> weights = new()
+{
+    {"earth", 12},
+    {"wind", 12},
+    {"water", 12},
+    {"ice", 10},
+    {"fire", 12},
+    {"plant", 10},
+    {"lightning", 12},
+    {"light", 6},
+    {"darkness", 6},
+    {"No-Attribute", 6}
+};
+
+public static string PickRandomElement(System.Random rng = null)
+{
+    rng ??= new System.Random();
+    int total = weights.Values.Sum();
+    int r = rng.Next(total);
+    int cumulative = 0;
+    foreach (var kv in weights)
+    {
+        cumulative += kv.Value;
+        if (r < cumulative) return kv.Key;
+    }
+    return weights.Keys.First();
+}`
                     }
                 ]
             },
-            "Unity C": {
-                scene: "an project started in my first year of game development i made this project with 4 other people over the time of 2 and a half months. its an 3D platformer where you have to use different mechanics to get through the levels and reach the end. later i myself took the project back up and worked on it further. dont forget to check out its github: https://github.com/L0rdSquidy/OneThatRemainsReOpened/tree/main",
-                code: `Code for Project A\n\nfunction main() {\n  console.log("check my ");\n}`,
+            "Unreal C": {
+                scene: "this project NeonOrigin, its an project made in unreal engine. when i entered my second half of my second year we were transfered to an office enviourment where we had to make an project in unreal engine or unity. i chose unreal engine to get more experience with it. the unreal project consisted of half of the class so at first it was a bit difficult to get used to but after a while i got the hang of it. eventually i became the lead programmer of the project and helped out my classmates with programming or github related issues. please check out the mechanics and code down below.",
+                code: `Code for Project NeonOrigin\n
+                \nfunction main() {\n  console.log("check my <https://github.com/BAStudio/NeoNUnreal' class='info-link2' target='_blank' rel='noopener noreferrer'>Github</a>");\n}`,
                 mechanics: [
                     {
-                        name: "Mathmetical Movement",
-                        info: `an mathmatical movement with procental velocity based jumping logic for the player to get the best possible feeling when jumping.\n for more code go to my <a href='https://github.com/L0rdSquidy/OneThatRemainsReOpened/blob/main/One%20That%20Remains/Assets/Assets/Scipts/Player/PlayerMovementGrappling.cs' class='info-link' target='_blank' rel='noopener noreferrer'>github</a>`,
-                        screenshot: "Jumping.gif",
-                        code: `using UnityEngine;\nprivate void Jump()
-	{
-		float JumpPercentages =  ((transform.position.y - lastGroundedPos.y)/(FullMaxJumpHeight-lastGroundedPos.y)) * 100;
-		// Debug.Log("JP%" + JumpPercentages);
-		// reset y velocity
-		if (IsJumping && !readyToJump)
-		{ 
-			exitingSlope = true;
-
-			if (JumpPercentages < 50)
-			{
-				rb.velocity = new Vector3(rb.velocity.x, jumpForce + 0.1f, rb.velocity.z);
-			} else if (JumpPercentages >= 50 && JumpPercentages < 90)
-			{
-				float jumpProgress = Mathf.Clamp01((JumpPercentages - 50) / 50f); 
-				float reducedJumpForce = Mathf.SmoothStep(jumpForce, 0, jumpProgress);
-				rb.velocity = new Vector3(rb.velocity.x, reducedJumpForce, rb.velocity.z);
-			} else if (JumpPercentages > 90 && !grounded)
-			{				
-				IsJumping = false;
-				IsFalling = true;
-				
-			} else
-			{
-				IsFalling = false;
-				IsJumping = false;
-				
-			}
-		}
-		
-		if (IsFalling)
-		{
-			ResetJump();
-			rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y - FallingMultiplier, rb.velocity.z);
-		}
-		
-
-`
+                        name: "Mathmatical Grappling",
+                        info: `an Mathmatical Grappling made in my second to third week of working in unreal. this was an real dificulty at first but i was able to adapt quick and brought an pretty well product to the table. it is made so that you can only grappel towards thrown shurikens with this we made an interesting mechanic. for this project sadly i can not link an github link as the project is made with blueprints.`,
+                        screenshot: "Grappling.gif",
+                        code: `Grappling`
                     },
                     {
-                        name: "Swinging",
-                        info: "math based Swinging script. for more code check out the <a href='https://github.com/L0rdSquidy/OneThatRemainsReOpened/blob/main/One%20That%20Remains/Assets/Assets/Scipts/Player/SwingingDone.cs' target='_blank' rel='noopener noreferrer'>github</a>",
-                        screenshot: "Swing.gif",
-                        code: `private void OdmGearMovement()
-    {
-        // right
-        if (Input.GetKey(KeyCode.D)) rb.AddForce(orientation.right * horizontalThrustForce * Time.deltaTime);
-        // left
-        if (Input.GetKey(KeyCode.A)) rb.AddForce(-orientation.right * horizontalThrustForce * Time.deltaTime);
-        // forward
-        if (Input.GetKey(KeyCode.W)) rb.AddForce(orientation.forward * horizontalThrustForce * Time.deltaTime);
-        // shorten cable
-        if (Input.GetKey(KeyCode.Space))
-        {
-            Vector3 directionToPoint = swingPoint - transform.position;
-            rb.AddForce(directionToPoint.normalized * forwardThrustForce * Time.deltaTime);
-            float distanceFromPoint = Vector3.Distance(transform.position, swingPoint);
-            joint.maxDistance = distanceFromPoint * 0.8f;
-            joint.minDistance = distanceFromPoint * 0.25f;
-        }
-        // extend cable
-        if (Input.GetKey(KeyCode.S))
-        {
-            float extendedDistanceFromPoint = Vector3.Distance(transform.position, swingPoint) + extendCableSpeed;
-            joint.maxDistance = extendedDistanceFromPoint * 0.8f;
-            joint.minDistance = extendedDistanceFromPoint * 0.25f;
-        }
-    }
-`
+                        name: "Hanging",
+                        info: "an hanging mechanic made with blueprints. this was an interesting one to make as i had to figure out how to make the player hang from an shuriken and then drop down from it. for this project sadly i can not link an github link as the project is made with blueprints.",
+                        screenshot: "Hanging.gif",
+                        code: `Hanging`
                     },
                     {
-                        name: "PathFinder",
-                        info: "A pathfinder made with navmesh making sure it shows the most effiecient way posible to your target. while also following the path set in place by the developer. please check the <a href='https://github.com/L0rdSquidy/OneThatRemainsReOpened/blob/main/One%20That%20Remains/Assets/Assets/Scipts/Player/PathFinder.cs' target='_blank' rel='noopener noreferrer'>github</a> for more code",
-                        screenshot: "Pathfinder.gif",
-                        code:` void TryFindBestQuestPath()
-	{
-		Collider[] hits = null;
-		hits = Physics.OverlapSphere(transform.position, searchRadius, objectiveLayer);
-		float bestCost = Mathf.Infinity;
-		Vector3 bestTargetPos = Vector3.zero;
-		Debug.Log(hits[0]);
-		if (agent.isOnNavMesh == false)
-		{
-			Debug.LogError("Agent is not on the NavMesh!");
-			return;
-		}
-
-
-		foreach (var hit in hits)
-		{
-			NavMeshPath path;
-			path = new NavMeshPath();
-			Debug.Log(NavMesh.CalculatePath(transform.position, hit.transform.position, NavMesh.AllAreas, path));
-			Debug.Log($"Path status: {path.status} | Corners: {path.corners.Length}");
-			if (!NavMesh.CalculatePath(transform.position, hit.transform.position, NavMesh.AllAreas, path))
-				{
-					Debug.LogWarning("Failed to calculate path to: " + hit.transform.name);
-					continue;
-				}
-				if (path.status != NavMeshPathStatus.PathComplete)
-				{
-					Debug.LogWarning("Incomplete path to: " + hit.transform.name);
-					continue;
-				}
-			float cost = EvaluatePathCost(path);
-			Debug.Log(cost);
-			if (cost < bestCost)
-			{
-				bestCost = cost;
-				bestTargetPos = hit.transform.position;
-				
-				// Debug.Log(hit.transform.position);
-			}
-		}
-		Debug.Log(bestCost);
-		if (bestCost < Mathf.Infinity)
-		{
-			agent.SetDestination(bestTargetPos);
-			SpawnPathParticles(agent.path);
-			clearRoutine = StartCoroutine(AutoClearParticles());
-			
-		}
-	}
-
-	float EvaluatePathCost(NavMeshPath path)
-	{
-		float cost = 0f;
-		Vector3[] corners = path.corners;
-
-		for (int i = 0; i < corners.Length - 1; i++)
-		{
-			Vector3 A = corners[i];
-			Vector3 B = corners[i + 1];
-			float dist = Vector3.Distance(A, B);
-			cost += dist;
-
-			// vertical penalty
-			float dh = B.y - A.y;
-			if (dh > jumpHeightThreshold)      cost += jumpPenalty;
-			else if (-dh > fallHeightThreshold) cost += fallPenalty;
-
-			// turn penalty
-			if (i > 0)
-			{
-				Vector3 prevDir = (A - corners[i - 1]).normalized;
-				Vector3 currDir = (B - A).normalized;
-				float angle = Vector3.Angle(prevDir, currDir);
-				cost += angle * turnAngleWeight;
-			}
-		}
-
-		return cost;
-	}`
+                        name: "Interaction System",
+                        info: "an modular interaction system made with blueprints. this system allowed us to make interactable objects that the player could interact with. it also comes with an text above every item you can interact with without having to put an ui element on every object. it was made with the Game Tag system of unreal as well as; enums, data tables, function librarys, structures, interfaces, blueprints and data assets. eventually it was expanded to an inventory system. for this project sadly i can not link an github link as the project is made with blueprints.",
+                        screenshot: "Interactionsystem.gif",
+                        code:`Interactionsystem`
                     }
                 ]
             },
             "Unity D": {
-                scene: "Scene for Project D",
-                code: `Code for Project D\n\nfunction main() {\n  console.log("ProjectD Code is Running...");\n}`,
+                scene: "Project Gameslice is an project i made in my second year of game development with 8 other people (4 developers 4 artist) over the time of 2 months. its an vertical slice of Hollow knight where we recreated parts of the game with our own assets and mechanics. i really tried to add comments in this project so our artist would know what did what. i mainly worked on the jumping, pogo hit, spike, sound and hit mechanics.",
+                code: `Code for Project Gameslice\n\nfunction main() {\n  console.log(" dont forget to check out its <a href='https://github.com/Entropire/HungryNight/tree/Development/Assets' class='info-link2 target='_blank' rel='noopener noreferrer'>github</a>");\n}`,
                 mechanics: [
                     {
-                        name: "Heavy Hit",
-                        info: "Player movement script with jump, run, etc.",
-                        screenshot: "MovementExample.png",
-                        code: `// Heavy hit script\nusing UnityEngine;\npublic class HeavyHit : MonoBehaviour {\n  void Update() {\n    // Heavy logic\n  }\n}`
+                        name: "PogoSlash",
+                        info:  `PogoSlash manages the pogo attack mechanic—a move where the player strikes downward and bounces off enemies or objects.
+Its core responsibilities include:
+
+Detecting when the player performs a downward attack
+
+Checking whether an object below can be pogoed
+
+Launching the player upward if a pogo hit occurs
+
+Managing the activation/deactivation of the pogo state. for more code check out the <a href='https://github.com/Entropire/HungryNight/blob/Development/Assets/Scripts/Player/PogoSlash.cs' class='info-link2 target='_blank' rel='noopener noreferrer'>github</a>`,
+                        screenshot: "PogoSlash.gif",
+                        code: `void Update() 
+{
+    IsDownSlash = GetComponent<Attacking>().OnBoxDown();
+
+    if (IsDownSlash && !PogoActive)
+    {
+        PogoActive = true;
+
+        Vector2 pos = new Vector2(
+            transform.position.x,
+            transform.position.y - transform.localScale.y / 2 - 0.1f
+        );
+
+        PogoCheck = Physics2D.Raycast(pos, Vector2.down, 2, HitAble);
+
+        if (PogoCheck)
+            Player.velocity = new Vector2(0, 10);
+    }
+    else if (PogoActive && !IsDownSlash)
+    {
+        PogoActive = false;
+    }
+}
+}`
+                    }, 
+                    {
+                        name: "PlayerMovement-Jumping",
+                        info: "together with an classmate i worked on the player movement, i personally made the jumping mechanic. for the jumping mechanic i used an mathmatical approach to get the best possible feeling when jumping. for more code check out the <a href='https://github.com/Entropire/HungryNight/blob/Development/Assets/Scripts/Player/PlayerMovement.cs' class='info-link2 target='_blank' rel='noopener noreferrer'>github</a>",
+                        screenshot: "PlayerJumping.gif",
+                        code: `private void Jumping()
+{
+    JumpPercentage = (transform.position.y / MaxJumpHeightPos) * 100;
+
+    if (IsJumping)
+    {
+        if (!JumpWasPressedThisFrame)
+        {
+            IsJumping = true;
+            BeginJump = true;
+            Rb.velocity = new Vector2(Rb.velocity.x, JumpForce);
+            JumpWasPressedThisFrame = true;
+        }
+
+        if (JumpPercentage < 90 && BeginJump)
+        {
+            Rb.velocity = new Vector2(Rb.velocity.x, JumpForce);
+        }
+        else if (JumpPercentage >= 90 && JumpPercentage < 98 && BeginJump)
+        {
+            float reducedJumpForce = Mathf.Lerp(JumpForce, 0, (JumpPercentage - 90) / 10f);
+            Rb.velocity = new Vector2(Rb.velocity.x, reducedJumpForce);
+        }
+        else if (JumpPercentage >= 98 && BeginJump)
+        {
+            IsJumping = false;
+            BeginJump = false;
+            IsFalling = true;
+        }
+        else
+        {
+            IsJumping = false;
+        }
+    }
+
+    if (Rb.velocity.y < 0)
+    {
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            BeginJump = false;
+            JumpWasPressedThisFrame = false;
+        }
+        IsFalling = true;
+    }
+
+    if (Input.GetKeyUp(KeyCode.Space))
+    {
+        BeginJump = false;
+        Rb.velocity = new Vector2(Rb.velocity.x, 1f);
+        JumpWasPressedThisFrame = false;
+    }
+}
+`
+                    }, 
+                    {
+                        name: "SpikeFall",
+                        info: `SpikeFall controls a falling spike trap that activates when the player is detected below it. Its responsibilities include:
+
+Detecting the player with a downward BoxCast
+
+Starting the falling behavior once triggered
+
+Simulating falling acceleration
+
+Detecting ground impact to stop the fall
+
+Changing the object’s tag depending on whether it’s airborne or settled
+
+This creates a hazard that drops when the player walks underneath and becomes “destroyable” when it hits the ground.`,
+                        screenshot: "SpikeHit.gif",
+                        code: `if (Physics2D.BoxCast(pos, new Vector2(1, transform.localScale.y), 0, Vector2.down, 5, layermaskPlayer) && !playerTrigger)
+{
+    playerTrigger = true; 
+}
+
+if (playerTrigger)
+{
+    
+    if (Physics2D.Raycast(transform.position, Vector2.down, 0.1f, layermaskGround))
+    {
+        isAirborn = false; // Landed
+    }
+    else
+    {
+        isAirborn = true;
+        transform.position += Vector3.down * speed * Time.deltaTime; // Falling
+        speed += 0.004f; // Acceleration
+    }
+}
+
+
+gameObject.tag = isAirborn ? "Spike" : "Destroyable";
+`
+                    },
+                    {
+                        name: "SoundInput",
+                        info: `SoundInput manages all player-related sound effects, automatically choosing which audio clip to play based on the player’s current movement state and special actions.
+Its responsibilities include:
+
+Monitoring the player’s movement states (walking, jumping, falling, attacking)
+
+Detecting pogo attacks using the PogoSlash component
+
+Playing appropriate sounds—looping or single-play
+
+Preventing redundant or repetitive sound playback
+
+Adjusting volume depending on the action
+
+This ensures smooth, state-driven audio feedback that matches gameplay behavior.`,
+                        screenshot: "SoundInput.png",
+                        code: `if (lastGroundedCheck && !player.isPlaying)
+    hasPlayed = false;
+
+if (playerState.IsWalking && !playerState.IsJumping && !playerState.IsFalling)
+{
+    PlaySound(0, true);
+    player.volume = 1;
+}
+else if (playerState.IsJumping && !pogoSlash.CheckPogo())
+{
+    lastGroundedCheck = false;
+    PlaySoundOnce(1);
+    player.volume = 0.3f;
+}
+else if (playerState.IsFalling && !playerState.IsJumping && !pogoSlash.CheckPogo())
+{
+    PlaySoundOnce(2);
+    player.volume = 0.3f;
+}
+else if (playerState.IsAttacking && !pogoSlash.CheckPogo())
+{
+    PlaySound(4, false);
+    player.volume = 1;
+}
+else if (pogoSlash.CheckPogo())
+{
+    PlaySound(5, false);
+    player.volume = 1f;
+}
+else
+{
+    StopSound();
+}
+
+if (!playerState.IsJumping && !playerState.IsFalling)
+    lastGroundedCheck = true;
+`
+                    }, 
+                    {
+                        name: "HitPushBack",
+                        info: `HitPushback manages the entire player hit-reaction system when colliding with spikes.
+Its responsibilities include:
+
+Detecting spike collisions
+
+Applying knockback forces based on hit direction
+
+Triggering a slow-motion “hit stop” effect
+
+Temporarily disabling player movement
+
+Managing a cooldown phase before the player can act again
+
+Applying fade-to-black UI feedback
+
+Resetting the player’s position when hit by non-falling spikes
+
+This makes hits feel impactful and prevents the player from instantly moving again.`,
+                        screenshot: "Fallhit.gif",
+                        code: `private void OnTriggerEnter2D(Collider2D other) 
+{
+    if (other.CompareTag("Spike"))
+    {
+        Vector2 direction = (transform.position - other.transform.position).normalized;
+        if (!ishitCooldown)
+        {
+            // Determine spike type and force
+            if (direction.y > 0 && other.GetComponent<SpikeFall>() == null)
+            {
+                YhitCords = 32;
+                ToColor = Color.black;
+                isntFallSpike = true;
+            }
+            else
+            {
+                YhitCords = 18;
+                ToColor = BaseColor;
+                isntFallSpike = false;
+            }
+            // Knockback
+            float xForce = direction.x > 0 ? 4 : -4;
+            rb.AddForce(new Vector2(xForce, YhitCords), ForceMode2D.Impulse);
+
+            Time.timeScale = 0.1f;      
+        }
+        ishitCooldown = true;
+        playMovement.enabled = false;   
+    }
+}
+`
                     }
                 ]
             },
@@ -1726,10 +2174,11 @@
 
        
 
-        
+    
+
         
         function switchExplorerTab(tab) {
-            
+           
             document.getElementById('explorerTab').classList.remove('active');
             document.getElementById('contentExplorerTab').classList.remove('active');
             document.getElementById('explorer-content').classList.add('hidden');
@@ -1743,6 +2192,7 @@
                 document.querySelectorAll('.project-button').forEach(item => item.classList.remove('selected'));
                 document.getElementById('contentExplorerTab').classList.add('active');
                 document.getElementById('content-explorer-content').classList.remove('hidden');
+                // document.dispatchEvent(new Event('playerPrefabReady'));
             }
         }
 
@@ -1791,6 +2241,7 @@
                 element.classList.add("selected");
             }
         }
+
         
         function switchTab(tab) {
             document.querySelectorAll('.tab-button').forEach(button => {
@@ -1830,15 +2281,17 @@
         function loadProject(projectName) {
             currentProject = projectName;
             currentMechanic = null;
+            const inspector = document.getElementById('inspector-view');
+            // inspector.classList.add("code-inspector"); // reset code formatting
+
+        
+
             switchTab('inspector');
 
             
             const isUnrealProject = projectName.includes("Unreal");
             const isUnityProject = projectName.includes("Unity");
-            if (isUnrealProject) {
-                switchTab('graph');
-                switchExplorerTab('explorer');
-            } else if (isUnityProject) {
+            if (isUnityProject || isUnrealProject) {
                 switchTab('inspector');
                 switchExplorerTab('explorer');
             } 
@@ -1856,7 +2309,28 @@
 
             
             document.getElementById('scene-view').innerText = projects[projectName].scene;
-            document.getElementById('inspector-view').innerText = projects[projectName].code;
+
+            const inspectorView = document.getElementById('inspector-view');
+            const projCode = projects[projectName].code || "";
+
+            // If the project 'code' contains an anchor (or other HTML) render as HTML,
+            // otherwise keep it as text so your existing observer will wrap it as <pre>.
+            if (/<a\s+[^>]*href=/i.test(projCode) || /<\/?(div|p|span|pre|code|br|strong|em|ul|li|a)[\s>]/i.test(projCode)) {
+                // Optional: sanitize before inserting (recommended if content isn't fully trusted).
+                // If you don't want to use DOMPurify, remove the next line and set innerHTML directly:
+                // inspectorView.innerHTML = projCode;
+                if (window.DOMPurify) {
+                    inspectorView.innerHTML = DOMPurify.sanitize(projCode, {
+                        ALLOWED_TAGS: ['a','b','i','em','strong','pre','code','br','p','div','span'],
+                        ALLOWED_ATTR: ['href','target','rel','class']
+                    });
+                } else {
+                    inspectorView.innerHTML = projCode;
+                }
+            } else {
+                // keep it plain text so your MutationObserver/escapeHtml logic will turn it into a code block
+                inspectorView.textContent = projCode;
+            }
 
             
             populateMechanicsList(projectName);
@@ -1892,7 +2366,7 @@
 
                 
                 tile.onclick = () => {
-                    loadMechanic(mechanic);
+                    loadMechanic(mechanic, projectName);
                     document.querySelectorAll('.script-tile').forEach(t => t.classList.remove('selected'));
                     tile.classList.add('selected');
                 };
@@ -1902,7 +2376,7 @@
         }
 
        
-        function loadMechanic(mechanic) {
+        function loadMechanic(mechanic, projectName) {
             currentMechanic = mechanic;
             const isContact = mechanic.name.includes("Contact");
             const isAboutMe = mechanic.name.includes("About");
@@ -1910,29 +2384,77 @@
             const isPopularUR = mechanic.name.includes("Unr");
            
             const sceneView = document.getElementById('scene-view');
+            
             if (isContact) {
                 document.getElementById('inspector-view').innerHTML = Contactinspector;
+                                // Clean previous classes
+                inspectorView.classList.remove("inspector-code-style", "inspector-normal-style");
+
+                // Decide which style to apply
+                const isAbout = projectName.toLowerCase().includes("about");
+                const isContact = projectName.toLowerCase().includes("contact");
+                const isBlueprint = projectName.toLowerCase().includes("blueprint");
+
+                if (!isAbout && !isContact && !isBlueprint) {
+                    // Use monospace + visible newlines
+                    inspectorView.classList.add("inspector-code-style");
+                } else {
+                    // Normal look for these pages
+                    inspectorView.classList.add("inspector-normal-style");
+                }
             } else if (isAboutMe) 
             {
-                document.getElementById('inspector-view').innerHTML =  Blueprintinspector;
+                document.getElementById('inspector-view').innerHTML = Blueprintinspector;
                 toggleTransForm()
-            }else if (isPopularUN) 
+                const inspectorView = document.getElementById('inspector-view');
+                                // Clean previous classes
+                inspectorView.classList.remove("inspector-code-style", "inspector-normal-style");
+
+                // Decide which style to apply
+                const isAbout = projectName.toLowerCase().includes("about");
+                const isContact = projectName.toLowerCase().includes("contact");
+                const isBlueprint = projectName.toLowerCase().includes("blueprint");
+
+                if (!isAbout && !isContact && !isBlueprint) {
+                    // Use monospace + visible newlines
+                    inspectorView.classList.add("inspector-code-style");
+                } else {
+                    // Normal look for these pages
+                    inspectorView.classList.add("inspector-normal-style");
+                }
+
+            } else if (isPopularUN) 
             {
                 loadProject('Unity A')
             } else if (isPopularUR) 
             {   
                 loadProject('Unreal B')
-            } else 
+            }
+             else 
             {
                 sceneView.innerHTML = `
                 <div style="margin-bottom: 10px;">
                     <strong>${mechanic.name}</strong> - ${mechanic.info}
                 </div>
-                <img src="${mechanic.screenshot}" alt="${mechanic.name} screenshot" style="width: 100%; max-width: 800px;"/>
-            `;
+                <img src="${mechanic.screenshot}" alt="${mechanic.name} screenshot" style="width: 100%; max-width: 800px;"/>`;
+                // If this is an Unreal project, show an image in the inspector instead of text
+                if (projectName.toLowerCase().includes("unreal")) {
+                    const inspectorView = document.getElementById('inspector-view');
 
-            
-            document.getElementById('inspector-view').innerText = mechanic.code;
+                    inspectorView.classList.remove("code-inspector"); // remove code formatting
+
+                    inspectorView.innerHTML = `
+                        <img src="${mechanic.code}.png"
+                            style="width:100%; border-radius:8px; margin-top:0px;"
+                            alt="${mechanic.code} preview">
+                    `; 
+                } else 
+                {  
+                const codeView = document.getElementById('inspector-view');
+                codeView.innerHTML = `<pre class="inspector-code">${escapeHtml(mechanic.code)}</pre>`;
+                }
+
+
             }
             
         }
