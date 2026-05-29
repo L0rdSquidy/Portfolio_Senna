@@ -454,6 +454,11 @@
                 </div>
             </div>
             <div id="explorer-content">
+                <div class="project-button" onclick="loadProject('SqueezeCat Unity')">
+                    <img class="project-thumbnail" src="Squeezecat_animation.gif" alt="Project SqueezeCat">
+                    <div class="blueprint-underline"></div>
+                    <div class="blueprint-label">Godot Horror</div>
+                </div>
                 <div class="project-button" onclick="loadProject('Unity A')">
                     <img class="project-thumbnail" src="Game_poster.png" alt="Unity A ">
                     <div class="blueprint-underline"></div>
@@ -462,7 +467,7 @@
                 <div class="project-button" onclick="loadProject('Unity B')">
                     <img class="project-thumbnail" src="PassivePopupController.png" alt="Unity B ">
                     <div class="blueprint-underline"></div>
-                    <div class="blueprint-label">Unity AI</div>
+                    <div class="blueprint-label">AI Incorperation</div>
                 </div>
                 <div class="project-button" onclick="loadProject('Unreal C')">
                     <img class="project-thumbnail" src="Neon.jpg" alt="Project C ">
@@ -474,7 +479,6 @@
                     <div class="blueprint-underline"></div>
                     <div class="blueprint-label">Unity GameSlice</div>
                 </div>
-               
             </div>
             
             <div id="content-explorer-content" class="hidden">
@@ -950,7 +954,7 @@
     
 document.addEventListener("DOMContentLoaded", () => {
         loadPlayerPrefab();
-        loadPlayerPrefab();
+        // loadPlayerPrefab();
         // toggleTransForm(); 
     });
 window.loadPlayerPrefab = loadPlayerPrefab;
@@ -1304,7 +1308,7 @@ window.loadPlayerPrefab = loadPlayerPrefab;
                     margin-bottom: 6px;
                 ">
                     <img 
-                    src="cube_icon_url" 
+                    src="GameObject.png" 
                     style="width: 16px; height: 16px; margin-right: 6px;" 
                     alt="Cube Icon"
                     />
@@ -1327,7 +1331,7 @@ window.loadPlayerPrefab = loadPlayerPrefab;
                     align-items: center;
                     ">
                     <img 
-                        src="script_icon_url" 
+                        src="Script.png" 
                         style="width: 16px; height: 16px; margin-right: 6px;" 
                         alt="Script Icon"
                     />
@@ -1567,6 +1571,9 @@ Harvesting grown crops and updating resources.`,
         soil.tag = "Soil";
     }
 }`
+                    },
+                    {
+                        name: "Contact",
                     }
                 ]
                 
@@ -1854,6 +1861,9 @@ public static string PickRandomElement(System.Random rng = null)
     }
     return weights.Keys.First();
 }`
+                    },
+                    {
+                        name: "Contact",
                     }
                 ]
             },
@@ -1879,6 +1889,9 @@ public static string PickRandomElement(System.Random rng = null)
                         info: "an modular interaction system made with blueprints. this system allowed us to make interactable objects that the player could interact with. it also comes with an text above every item you can interact with without having to put an ui element on every object. it was made with the Game Tag system of unreal as well as; enums, data tables, function librarys, structures, interfaces, blueprints and data assets. eventually it was expanded to an inventory system. for this project sadly i can not link an github link as the project is made with blueprints.",
                         screenshot: "Interactionsystem.gif",
                         code:`Interactionsystem`
+                    },
+                    {
+                        name: "Contact",
                     }
                 ]
             },
@@ -2129,7 +2142,346 @@ This makes hits feel impactful and prevents the player from instantly moving aga
     }
 }
 `
+                    },
+                    {
+                        name: "Contact",
                     }
+                ]
+            },
+            "SqueezeCat Unity": {
+                scene: `This is an project i made during my internship at SqueezeCat.
+It is a horror stock trading game build in godot, developed together with a team of four. The project spanned two school periods, and I was fortunate to join during the concept phase, which meant I could contribute meaningfully from the very beginning.
+
+The game takes place in an hyper-capitalist world where you play as a stock trader drowning in millions of debt, racing to buy your way back to freedom. It blends the tension of financial strategy with a horror atmosphere.
+it was a very fun project to work on.
+
+The game is still in development, but it's been a rewarding experience.  Check out the mechanics and code below`,
+                code: `Code for Project SqueezeCat\n\nfunction main() {\n  console.log("dont forget to check out their <a href='https://squeezecat.com/website' class='info-link2 target='_blank' rel='noopener noreferrer'>Website</a>");\n}`,
+                mechanics: [
+                    {
+                        name: "StockGraphDriver",
+                        info: `Per-company Control node that owns the Line2D graph and its buy/sell UI. Loads a pre-generated price series from DataManager, aligns it to the current in-game time (market opens at 05:00, ticks every 15 in-game minutes), and progressively reveals points as time advances. Applies skyrocket/plummet shocks from MarketEventManager by mutating both the stored series and the local runtime slice simultaneously. Handles share purchases and sales with cooldown guards, an "all" mode, and a Polygon2D ownership dot that tracks the buy-in point on the graph.`,
+                        screenshot: "StockGraphDriver.gif",
+                        code: `private void ApplyShock(float multiplier, int durationPoints)
+{
+float[] fullSeries = dataManager.GetCompanySeries(Company);
+int applyFromFullIndex = startIndex + Mathf.Clamp(revealedCount, 0, useCount - 1);
+
+dataManager.ApplyShockToStoredSeries(Company, applyFromFullIndex, durationPoints, multiplier);
+
+int localApplyFrom = applyFromFullIndex - startIndex;
+int endLocal = Math.Min(generatedPrices.Count, localApplyFrom + durationPoints);
+
+for (int i = localApplyFrom; i < endLocal; i++)
+generatedPrices[i] = MathF.Max(0.01f, generatedPrices[i] * multiplier);
+
+RebuildLinePoints();
+}`,
+                    },
+                    {
+                        name: "MarketEventManager",
+                        info: `Applies timed multiplier effects to company stock graphs via three layers — scripted events (tech breakthrough, lawsuits), manual shocks (flash crash, rally), and global market phases (growth, recession). Effects expire tick-by-tick on a quarter-hour clock and are tracked in a unified active-effects list.`,
+                        screenshot: "MarketEventManager.gif",
+                        code: `public void TriggerShock(CompanyKey key, MarketShockType type, int duration)
+{
+float multiplier = type switch
+{
+MarketShockType.FlashCrash => SeededRng.RandfRange(0.75f, 0.65f),
+MarketShockType.Dip        => SeededRng.RandfRange(0.95f, 0.85f),
+MarketShockType.Rally      => SeededRng.RandfRange(1.05f, 1.15f),
+MarketShockType.Bubble     => SeededRng.RandfRange(1.25f, 1.35f),
+_                          => 1f
+};
+if (type != MarketShockType.None)
+{
+ApplyToCompany(key, multiplier, duration);
+activeEffects.Add(new ActiveMarketEffect(EffectCategory.Shock, type.ToString(), key, multiplier, duration));
+}
+}`,
+                    },
+                    {
+                        name: "DeadlineManager",
+                        info: `Drives a weekly debt-repayment loop: calculates installments as a fraction of total debt, handles partial payments, fires signals on completion or failure, and grows total debt each cycle. Reputation rewards scale with how early the player pays. Supports ad-hoc extra-debt charges.`,
+                        screenshot: "DeadlineManager.gif",
+                        code: `public bool PayDeadline(float amount)
+{
+if (DeadlinePaidThisWeek)
+{
+Helper.DebugLog("[DeadlineManager] Deadline already paid this week.");
+return false;
+}
+
+float playerMoney = _dm.GetMoney();
+float toPay = MathF.Min(amount, playerMoney);
+toPay = MathF.Min(toPay, AmountRemaining);
+
+if (toPay <= 0f)
+{
+Helper.DebugLog("[DeadlineManager] Nothing to pay or no money available.");
+return false;
+}
+
+_dm.UseMoney(toPay);
+AmountPaidThisWeek = MathF.Round(AmountPaidThisWeek + toPay, 2);
+
+Helper.DebugLog($"[DeadlineManager] Paid §{toPay:F2} — remaining: §{AmountRemaining:F2}");
+
+if (AmountRemaining <= 0f)
+{
+CompletDeadline();
+return true;
+}
+
+EmitSignal(SignalName.DebtStateChanged);
+return false;
+}`,
+                    },
+                    {
+                        name: "TimeManager",
+                        info: `Central central game clock that advances simulated time and emits signals for quarter-hour ticks, day transitions, night starts, and week rollovers. Other managers subscribe to these events rather than polling, keeping time logic decoupled. you can set the Time it takes for a day to pass in real time, and the manager will handle the rest. next to that you can add event timers for specific events that should happen after a certain amount of time has passed. for example you can set a timer for the deadline manager to know when the next payment is due.`,
+                        screenshot: "TimeManager.gif",
+                        code: `long startIndex = (long)Math.Floor(previousTotal / SecondsPerQuarterHour);
+long endIndex   = (long)Math.Floor(newTotal      / SecondsPerQuarterHour);
+
+for (long i = startIndex + 1; i <= endIndex; i++)
+{
+double triggerSeconds = (i * SecondsPerQuarterHour) % SecondsPerDay;
+if (triggerSeconds < 0.0) triggerSeconds += SecondsPerDay;
+QuarterHourPassed?.Invoke(TimeSpan.FromSeconds(triggerSeconds));
+}`,
+                    },
+                    {
+                        name: "ReputationManager",
+                        info: `Tracks a running reputation total that fills a level bar. Gaining levels is permanent; losing reputation doesn't demote the player but increases the next-level threshold via a stacking penalty multiplier. Eight predefined levels with placeholder reward slots.`,
+                        screenshot: "ReputationManager.gif",
+                        code: `public void LoseReputation(float amount, string reason)
+{
+CurrentReputation = MathF.Round(MathF.Max(0f, CurrentReputation - amount), 2);
+
+if (CurrentPenaltyStacks < MaxPenaltyStacksPerLevel)
+{
+NextLevelThreshold = MathF.Round(NextLevelThreshold * LossPenaltyMultiplier, 2);
+CurrentPenaltyStacks++;
+}
+
+EmitSignal(SignalName.ReputationLost, amount, reason);
+EmitSignal(SignalName.ReputationChanged, CurrentReputation, NextLevelThreshold, CurrentLevel);
+}`,
+                    },
+                    {
+                        name: "SearchEngine",
+                        info: `A fully faked search engine called "Graham Nexus" that mimics a real browser UI — address bar, bookmarks, search results, and AI overviews — entirely from hardcoded in-game data. Detects topic keywords (debt, sleep, help, work, sadness) and serves tailored "AI overview" panels that darkly parody targeted advertising, recommending branded alcoholic drinks for every problem the player might search for. Five in-game company websites (Appic, Mustachio, Vitunari, Amazia, Ikeon) are navigable via fuzzy-matched keywords. Supports bookmarking with a remove-mode toggle, rotating nudge messages, and dead/sponsored result generation.`,
+                        screenshot: "SearchEngine.gif",
+                        code: `private static string SuggestCorrection(string query)
+{
+string[] words = query.ToLower().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+bool anyChanged = false;
+string[] corrected = new string[words.Length];
+
+for (int i = 0; i < words.Length; i++)
+{
+string w = words[i];
+if (Array.Exists(KnownWords, k => k == w)) { corrected[i] = w; continue; }
+
+string best = null;
+int bestDist = int.MaxValue;
+foreach (string k in KnownWords)
+{
+if (Math.Abs(k.Length - w.Length) > 3) continue;
+int dist = LevenshteinDistance(w, k);
+if (dist < bestDist) { bestDist = dist; best = k; }
+}
+
+if (best != null && bestDist <= 2 && bestDist > 0) { corrected[i] = best; anyChanged = true; }
+else corrected[i] = w;
+}
+
+return anyChanged ? string.Join(" ", corrected) : null;
+}`,
+                    },
+                    {
+                        name:"HedgeFundManager",
+                        info: `Acts as the fund's daily directive system. Each morning it procedurally generates a randomised batch of quests drawn from a weighted pool — targets range from investing in specific companies, turning a profit on a trade, applying market shocks, to pure volume plays. Tracks granular per-company and aggregate stats in real time (money invested, profit realised, buffs/debuffs applied, trade count), evaluating every quest on each relevant player action. Completing a quest instantly distributes token, money, and reputation rewards. At week-end, any earnings above the quota compound back into a harder quota via a configurable tax rate, creating a natural difficulty ramp.`,
+                        screenshot: "HedgeFundManager.gif",
+                        code: `// Notify on buy — tracked per company and in aggregate
+public void NotifySharesBought(CompanyKey company, int amount, float pricePerShare)
+{
+float total = amount * pricePerShare;
+_totalInvestedToday += total;
+_totalTradesExecutedToday++;
+
+if (!_moneyInvestedToday.ContainsKey(company))
+_moneyInvestedToday[company] = 0f;
+_moneyInvestedToday[company] += total;
+
+EvaluateAllQuests();
+}
+
+// Quest generation — seeded RNG picks two distinct companies, then
+// builds a fixed pool and Fisher-Yates shuffles before slicing
+private List<HedgeFundQuest> BuildQuestPool(RandomNumberGenerator rng)
+{
+var companies = Enum.GetValues<CompanyKey>()
+.Where(k => k != CompanyKey.GeneralCompany).ToArray();
+
+CompanyKey compA = companies[rng.RandiRange(0, companies.Length - 1)];
+CompanyKey compB;
+do { compB = companies[rng.RandiRange(0, companies.Length - 1)]; }
+while (compB == compA);
+
+return new List<HedgeFundQuest>
+{
+new() {
+Id = "invest_single", Type = QuestType.InvestInCompany,
+Title = $"Invest in {compA}",
+TargetCompany = compA, TargetAmount = InvestTarget(rng),
+TokenReward = 2, ReputationReward = 10f,
+},
+new() {
+Id = "profit_target", Type = QuestType.TotalProfit,
+Title = "Hit the Daily Profit Target",
+TargetAmount = ProfitTarget(rng),
+TokenReward = 5, MoneyReward = 50f, ReputationReward = 30f,
+},
+// ... remaining quest types
+};
+}
+
+// Week-end quota compounding — excess earnings raise next week's bar
+public void OnWeekAdvanced()
+{
+float excess = BusinessEarningsThisWeek - WeeklyQuota;
+if (excess > 0f)
+{
+float increase = MathF.Round(excess * ExcessQuotaTaxRate, 2);
+WeeklyQuota = MathF.Round(WeeklyQuota + increase, 2);
+EmitSignal(SignalName.QuotaIncreased, WeeklyQuota, increase);
+}
+BusinessEarningsThisWeek = 0f;
+_completedThisWeek.Clear();
+}`
+                    },
+                    {
+                        name: "NewsFeedManager",
+                        info: `Maps each CompanyKey to a pool of hand-written good and bad headline strings. When a market event fires, picks a random headline from the matching pool based on whether the multiplier is above or below 1, then pushes it to the TickerLabel as a news interruption. Falls back to a generic formatted string for companies with no defined headlines.`,
+                        screenshot: "NewsFeedManager.gif",
+                        code: `public string GetNewsText(CompanyKey companyKey, float multiplier)
+{
+if (companyNews.TryGetValue(companyKey, out NewsStrings newsStrings))
+return multiplier < 1f
+? GetRandomFromList(newsStrings.Bad)
+: GetRandomFromList(newsStrings.Good);
+
+return multiplier < 1f
+? $"{companyKey} reports negative market movement."
+: $"{companyKey} reports positive market movement.";
+}`,
+                    },
+                    {
+                        name: "SanityManager",
+                        info: `Maintains a 0–100 sanity value with a configurable passive drain rate that ticks each frame. Five named thresholds (Uneasy → Lost) fire signals and optional callbacks when crossed downward, and reset when sanity recovers. Drain rate intensifies at night and resets at dawn. Sanity is affected by market events, search engine usage, and debt levels, creating a dynamic risk-reward system where aggressive trading can yield high returns but also accelerate sanity loss.`,
+                        screenshot: "SanityManager.gif",
+                        code: `private void CheckThresholds(float previous, float current)
+{
+foreach (SanityThreshold threshold in _thresholds)
+{
+bool crossedDown = previous > threshold.Value && current <= threshold.Value;
+if (crossedDown && !_triggeredThresholds.Contains(threshold.Name))
+{
+_triggeredThresholds.Add(threshold.Name);
+EmitSignal(SignalName.SanityThresholdReached, threshold.Name, current);
+threshold.OnTrigger?.Invoke(current);
+}
+if (current > threshold.Value && previous < current)
+{
+_triggeredThresholds.Remove(threshold.Name);
+EmitSignal(SignalName.SanityThresholdReset, threshold.Name);
+}
+}
+}`,
+                    },
+                    {
+                        name: "AudioManager",
+                        info: `Singleton that manages a bank of named audio clips mapped to 9 fixed 3D scene positions. Handles layered playback by spawning child players, category-based stop/volume operations, and per-clip volume control. Hooks into the day/night cycle to play ambient startup sounds.`,
+                        screenshot: "AudioManager.png",
+                        code: `// If the location is already playing, spawn a child player instead of interrupting
+if (audioPlayers[location].Playing)
+{
+AudioPlayer = new AudioStreamPlayer3D();
+audioPlayers[location].AddChild(AudioPlayer);
+AudioPlayer.Stream = stream;
+AudioPlayer.Play();
+AudioPlayer.VolumeDb = audioPlayers[location].VolumeDb;
+AudioPlayer.Finished += () => AudioPlayer.QueueFree();
+                                }`,
+                    },
+                    {
+                        name: "PortfolioManager",
+                        info: `Read-only analytics layer over DataManager's asset dictionary. Calculates total portfolio value, cost basis, and unrealized P&L by iterating held shares against live prices. Identifies best and worst performing holdings by percentage return, and produces a sorted CompanyPortfolioEntry list with per-company value, invested amount, profit in currency, and profit as a percentage.`,
+                        screenshot: "PortfolioManager.png",
+                        code: `public List<CompanyPortfolioEntry> GetPortfolioSortedByValue()
+{
+List<CompanyPortfolioEntry> entries = new();
+foreach (KeyValuePair<CompanyKey, Assets> kvp in dataManager.CompanyAssets)
+{
+float invested     = kvp.Value.PricePerShare.Sum();
+float currentValue = dataManager.GetCurrentPrice(kvp.Key) * kvp.Value.Shares;
+float profitAmount = currentValue - invested;
+entries.Add(new CompanyPortfolioEntry
+{
+Company       = kvp.Key,
+Shares        = kvp.Value.Shares,
+CurrentValue  = currentValue,
+Invested      = invested,
+ProfitAmount  = profitAmount,
+ProfitPercent = invested > 0f ? (profitAmount / invested) * 100f : 0f
+});
+}
+entries.Sort((a, b) => b.ProfitAmount.CompareTo(a.ProfitAmount));
+return entries;
+}`,
+                    },  
+                    {
+                        name: "CompanyManager",
+                        info: `Central registry that owns all CompanyData definitions and maps each CompanyKey to its StockGraphDriver. Calculates share prices from asset worth and total shares, and reverse-calculates company worth from a given price. Acts as the lookup bridge so systems like MarketEventManager and PortfolioManager can reach both company fundamentals and live graph drivers without touching the scene tree directly.`,
+                        code: `public Dictionary<CompanyKey, float> CalculateAllSharePrices()
+{
+Dictionary<CompanyKey, float> prices = new();
+foreach (KeyValuePair<CompanyKey, CompanyData> pair in Companies)
+{
+float sharePrice = pair.Value.AssetWorth / pair.Value.TotalShares;
+prices.Add(pair.Key, sharePrice);
+}
+return prices;
+}`,
+                    },
+                    {
+                        name: "PC",
+                        info: `Controls the player's in-game computer UI. Manages a list of app icons, instantiates Windows per app on click, handles minimise/restore, syncs the SubViewport size on resize, and drives a custom cursor sprite aligned to a hotspot offset.`,
+                        screenshot: "PC.gif",
+                        code: `app.AppButton.Pressed += () =>
+{
+if (app.windowInstance == null)
+{
+WindowBorder border = windowBorderPrefab.Instantiate<WindowBorder>();
+border.Name = app.Name + " Window";
+app.windowInstance = border;
+windowLocation.AddChild(border);
+border.LoadApp(app.AppPrefab, app.IsLargeWindow);
+border.Scale = new Vector2(0.98f, 0.94f);
+}
+else
+{
+app.minimalize();
+}
+};`,
+                    },  
+                    
+                      
+                    {
+                        name: "Contact",
+                    },
+                    
                 ]
             },
             "Contact E": {
@@ -2157,7 +2509,8 @@ This makes hits feel impactful and prevents the player from instantly moving aga
                         name: "Unreal Neon"
                     }
                 ]
-            }
+            },
+            
         };
 
         let currentProject = "No Project Selected";
@@ -2458,12 +2811,7 @@ This makes hits feel impactful and prevents the player from instantly moving aga
             }
             
         }
-        // ensure the style is only appended once and force the wrapper to re-run
-        style.id = 'inspector-code-style';
-        if (!document.head.querySelector('#inspector-code-style')) {
-            document.head.appendChild(style);
-        }
-        // re-apply wrapper in case inspector content was replaced later
+        
 
         function escapeHtml(str) {
             return str
@@ -2584,7 +2932,7 @@ This makes hits feel impactful and prevents the player from instantly moving aga
         function resetPanels() {
             currentProject = "No Project Selected";
             currentMechanic = null;
-
+            
             switchTab('inspector');
             switchExplorerTab('explorer');
             document.querySelectorAll(".blueprint-button").forEach(btn => btn.classList.remove("selected"));
@@ -2615,6 +2963,7 @@ This makes hits feel impactful and prevents the player from instantly moving aga
             
             document.getElementById('mechanicsList').innerHTML = "";
             populateMechanicsList('Unity Speedshort');
+            loadPlayerPrefab();
         }
     </script>
 </body>
